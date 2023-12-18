@@ -21,7 +21,7 @@ import { useRef, useState } from "react";
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
-  const [isLargerThan62em] = useMediaQuery("(min-width: 62em)", {
+  const [isLargerThan993px] = useMediaQuery("(min-width: 993px)", {
     ssr: true,
     fallback: false, // return false on the server, and re-evaluate on the client side
   });
@@ -59,7 +59,7 @@ const Sidebar = () => {
     </List>
   );
 
-  return isLargerThan62em ? (
+  return isLargerThan993px ? (
     <>
       <Heading mb="20px" as="h3" size="lg">
         Genres
