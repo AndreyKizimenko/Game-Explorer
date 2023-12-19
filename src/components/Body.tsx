@@ -3,6 +3,7 @@ import { Grid, GridItem, SimpleGrid, Heading, Flex, Show } from "@chakra-ui/reac
 import Sidebar from "./Sidebar";
 import Filters from "./Filters";
 import GridCard from "./GridCard";
+import GameGrid from "./GameGrid";
 
 const Body = () => {
   return (
@@ -15,9 +16,7 @@ const Body = () => {
           <GridItem colSpan={{ base: 10, lg: 7, xl: 8 }}>
             <Heading size={"3xl"}>Games</Heading>
             <Filters my="20px" />
-            <SimpleGrid minChildWidth="300px" spacing={"20px"}>
-              <GridCard />
-            </SimpleGrid>
+            <GameGrid />
           </GridItem>
         </Grid>
       </Show>
@@ -35,12 +34,7 @@ const Body = () => {
             <Filters />
           </Flex>
 
-          <SimpleGrid minChildWidth="300px" spacing={"20px"}>
-            <GridCard />
-            <GridCard />
-            <GridCard />
-            
-          </SimpleGrid>
+          <GameGrid />
         </Flex>
       </Show>
     </>
