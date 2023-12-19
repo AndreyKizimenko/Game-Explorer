@@ -11,6 +11,7 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
+import logo from '../assets/logo.webp'
 
 import { PiToggleLeftFill, PiToggleRightFill } from "react-icons/pi";
 
@@ -35,7 +36,7 @@ const Header = () => {
           <Image
             minW={{ base: "48px", lg: "64px" }}
             maxW={{ base: "48px", lg: "64px" }}
-            src="src\assets\logo.webp"
+            src={logo}
             alt="Game Hub Logo"
           ></Image>
         </Link>

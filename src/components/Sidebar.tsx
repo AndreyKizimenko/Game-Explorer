@@ -3,7 +3,6 @@ import {
   List,
   Image,
   ListItem,
-  useMediaQuery,
   Button,
   Drawer,
   DrawerBody,
@@ -14,6 +13,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Text,
+  Show,
 } from "@chakra-ui/react";
 
 import { useRef, useState } from "react";
@@ -21,10 +21,7 @@ import { useRef, useState } from "react";
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
-  const [isLargerThan993px] = useMediaQuery("(min-width: 993px)", {
-    ssr: true,
-    fallback: false, // return false on the server, and re-evaluate on the client side
-  });
+
   const [selectedGenre, setGenre] = useState("");
   const genres = [
     "Action-Adventure",
@@ -59,32 +56,33 @@ const Sidebar = () => {
     </List>
   );
 
-  return isLargerThan993px ? (
+  return (
     <>
-      <Heading mb="20px" as="h3" size="lg">
-        Genres
-      </Heading>
-      {list}
-    </>
-  ) : (
-    <>
-      <Button ref={btnRef} onClick={onOpen}>
-        Genres
-      </Button>
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Genres</DrawerHeader>
-          <DrawerBody>{list}</DrawerBody>
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button>Filter</Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+      <Show above="993px">
+        <Heading mb="20px" as="h3" size="lg">
+          Genres
+        </Heading>
+        {list}
+      </Show>
+      <Show below="992px">
+        <Button ref={btnRef} onClick={onOpen}>
+          Genres
+        </Button>
+        <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Genres</DrawerHeader>
+            <DrawerBody>{list}</DrawerBody>
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button>Filter</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </Show>
     </>
   );
 };
