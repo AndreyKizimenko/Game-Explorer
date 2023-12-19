@@ -1,26 +1,10 @@
-import { Icon, Search2Icon } from "@chakra-ui/icons";
-import {
-  Button,
-  Flex,
-  Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Link,
-  useColorMode,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import logo from '../assets/logo.webp'
+import { Search2Icon } from "@chakra-ui/icons";
+import { Flex, Image, Input, InputGroup, InputLeftElement, Link } from "@chakra-ui/react";
+import logo from "../assets/logo.webp";
 
-import { PiToggleLeftFill, PiToggleRightFill } from "react-icons/pi";
+import ColorModeSwitch from "./ColorModeSwitch";
 
 const Header = () => {
-  const [isLargerThan768] = useMediaQuery("(min-width: 768px)", {
-    ssr: true,
-    fallback: false, // return false on the server, and re-evaluate on the client side
-  });
-  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
       <Flex
@@ -47,23 +31,7 @@ const Header = () => {
           <Input placeholder="Search" />
         </InputGroup>
 
-        <Button
-          onClick={toggleColorMode}
-          width={{ base: "5em", md: "10em" }}
-          flexShrink={{ base: 1, md: 0 }}
-        >
-          {colorMode === "light" ? (
-            <>
-              <Icon color="gray" mr="5px" boxSize={10} as={PiToggleLeftFill} />
-              <Text>{isLargerThan768 ? "Light Mode" : ""}</Text>
-            </>
-          ) : (
-            <>
-              <Icon color="green.300" mr="5px" boxSize={10} as={PiToggleRightFill} />
-              <Text>{isLargerThan768 ? "Dark Mode" : ""}</Text>
-            </>
-          )}
-        </Button>
+        <ColorModeSwitch />
       </Flex>
     </>
   );
