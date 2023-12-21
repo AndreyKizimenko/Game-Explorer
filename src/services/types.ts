@@ -29,8 +29,7 @@ export default interface GameGridProps {
 }
 
 export interface UseGames extends GameGridProps {
-  setSelectedGenre: React.Dispatch<React.SetStateAction<number | undefined>>;
-  selectedGenre?: string | number;
+
   setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   parameters: GetGamesParams;
 }
@@ -42,8 +41,7 @@ export interface UseGenres {
 }
 
 export interface SideBarProps extends UseGenres {
-  setSelectedGenre: React.Dispatch<React.SetStateAction<number | undefined>>;
-  selectedGenre?: string | number;
+
   setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   parameters: GetGamesParams;
 }

@@ -7,12 +7,12 @@ import { Game, GetGamesParams } from "../services/types";
 const useGames = () => {
   const [gamesError, setGamesError] = useState("");
   const [games, setGames] = useState<Game[] | undefined>();
-  const [gamesIsLoading, setLoading] = useState(false);
-  const [selectedGenre, setSelectedGenre] = useState<number>();
+  const [gamesIsLoading, setLoading] = useState(false);  
   const [parameters, setParams] = useState<GetGamesParams>({page_size: 40});
 
   useEffect(() => {
     setLoading(true);
+    setGames([])
     const { request, cancel } = gameService.getAllGames(parameters);
     request
       .then((res: AxiosResponse<{ results: Game[] }>) => {
@@ -30,7 +30,7 @@ const useGames = () => {
     };
   }, [parameters]);
 
-  return { gamesError, games, setGames, gamesIsLoading, selectedGenre, setSelectedGenre, parameters, setParams };
+  return { gamesError, games, setGames, gamesIsLoading, parameters, setParams };
 };
 
 export default useGames;

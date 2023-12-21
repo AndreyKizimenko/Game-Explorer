@@ -11,8 +11,6 @@ const Body = () => {
     gamesError,
     games,
     gamesIsLoading,
-    selectedGenre,
-    setSelectedGenre,
     parameters,
     setParams,
   }: UseGames = useGames();
@@ -27,8 +25,6 @@ const Body = () => {
               genresError={genresError}
               genres={genres}
               genresIsLoading={genresIsLoading}
-              selectedGenre={selectedGenre}
-              setSelectedGenre={setSelectedGenre}
               parameters={parameters}
               setParams={setParams}
             />
@@ -54,7 +50,6 @@ const Body = () => {
               genresError={genresError}
               genres={genres}
               genresIsLoading={genresIsLoading}
-              setSelectedGenre={setSelectedGenre}
               parameters={parameters}
               setParams={setParams}
             />
