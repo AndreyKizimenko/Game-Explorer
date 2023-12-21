@@ -23,4 +23,10 @@ export interface UseGenres{
   genresError?:string,
   genres?: Genre[];
   genresIsLoading?: boolean;
+  
+}
+
+export interface SideBarProps extends UseGenres {
+  setSelectedGenre: React.Dispatch<React.SetStateAction<number | undefined>>;
+  selectedGenre?: string | number;  
 }

@@ -15,16 +15,16 @@ import {
   Text,
   Show,
 } from "@chakra-ui/react";
-import { UseGenres } from "../services/types";
-import { useRef, useState } from "react";
+import { SideBarProps } from "../services/types";
+import { useRef } from "react";
 
-const Sidebar = ({ genresError, genres, genresIsLoading }: UseGenres) => {
+const Sidebar = ({ genresError, genres, genresIsLoading, selectedGenre, setSelectedGenre }: SideBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  const [selectedGenre, setGenre] = useState<number>();
+  
   const handleGenreSelect = (id: number) => {
-    selectedGenre === id ? setGenre(-1) : setGenre(id);
+    selectedGenre === id ? setSelectedGenre(-1) : setSelectedGenre(id);
   };
 
   const list = (

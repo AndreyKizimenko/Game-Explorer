@@ -5,17 +5,19 @@ import Filters from "./Filters";
 import GameGrid from "./GameGrid";
 import useGames from "../hooks/UseGames";
 import useGenres from "../hooks/UseGenres";
+import { useState } from "react";
 
 const Body = () => {
   const { gamesError, games, gamesIsLoading } : UseGames  = useGames({ page_size: 40});
   const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
-
+  const [selectedGenre, setSelectedGenre] = useState<number>();
+  
   return (
     <>
       <Show above="993px">
         <Grid templateColumns={"repeat(10, 1fr)"} mx="20px">
           <GridItem colSpan={{ base: 10, lg: 3, xl: 2 }} colStart={{ base: 10, lg: 1 }} colEnd={10}>
-            <Sidebar genresError={genresError} genres={genres} genresIsLoading={genresIsLoading} />
+            <Sidebar genresError={genresError} genres={genres} genresIsLoading={genresIsLoading} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
           </GridItem>
           <GridItem colSpan={{ base: 10, lg: 7, xl: 8 }}>
             <Heading size={"3xl"}>Games</Heading>
@@ -34,7 +36,7 @@ const Body = () => {
             alignItems={"center"}
             flexWrap={"wrap"}
           >
-            <Sidebar genresError={genresError} genres={genres} genresIsLoading={genresIsLoading}/>
+            <Sidebar genresError={genresError} genres={genres} genresIsLoading={genresIsLoading} setSelectedGenre={setSelectedGenre}/>
             <Filters />
           </Flex>
 
