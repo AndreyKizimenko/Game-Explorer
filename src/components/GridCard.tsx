@@ -1,8 +1,8 @@
 import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from "@chakra-ui/react";
 import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple } from "react-icons/fa";
-import { UseGames } from "../services/types";
+import GameGridProps from "../services/types";
 
-const GridCard = ({gamesError, games, gamesIsLoading} : UseGames) => {
+const GridCard = ({gamesError, games, gamesIsLoading} : GameGridProps) => {
   
   return (
     <>

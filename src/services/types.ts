@@ -13,20 +13,37 @@ export interface Genre {
   image_background: string;
 }
 
-export interface UseGames{
-  gamesError?:string,
+export interface GetGamesParams {
+  id?: number;
+  page_size?: number;
+  platforms?: number;
+  genres?: string | number;
+  metacritic?: string;
+  ordering?: string;
+}
+
+export default interface GameGridProps {
+  gamesError?: string;
   games?: Game[];
   gamesIsLoading?: boolean;
 }
 
-export interface UseGenres{
-  genresError?:string,
+export interface UseGames extends GameGridProps {
+  setSelectedGenre: React.Dispatch<React.SetStateAction<number | undefined>>;
+  selectedGenre?: string | number;
+  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
+  parameters: GetGamesParams;
+}
+
+export interface UseGenres {
+  genresError?: string;
   genres?: Genre[];
   genresIsLoading?: boolean;
-  
 }
 
 export interface SideBarProps extends UseGenres {
   setSelectedGenre: React.Dispatch<React.SetStateAction<number | undefined>>;
-  selectedGenre?: string | number;  
+  selectedGenre?: string | number;
+  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
+  parameters: GetGamesParams;
 }

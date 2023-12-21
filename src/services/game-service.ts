@@ -1,17 +1,9 @@
 import apiClient from "./api-client";
+import { GetGamesParams } from "./types";
 
-export interface GamesParams{
-  id?: number;
-  page_size?: number;
-  platforms?:number;
-  genres?:string | number;
-  metacritic?:string;
-  ordering?:string;
-
-}
 
 class GameService {
-  getAllGames = (params? : GamesParams) => {
+  getAllGames = (params? : GetGamesParams) => {
     const controller = new AbortController();
     const request = apiClient.get("/games",  { signal: controller.signal, params });
     return { request, cancel: () => controller.abort };

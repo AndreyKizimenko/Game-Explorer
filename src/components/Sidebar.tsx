@@ -18,13 +18,27 @@ import {
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
 
-const Sidebar = ({ genresError, genres, genresIsLoading, selectedGenre, setSelectedGenre }: SideBarProps) => {
+const Sidebar = ({
+  genresError,
+  genres,
+  genresIsLoading,
+  parameters,
+  setParams,
+}: SideBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  
   const handleGenreSelect = (id: number) => {
-    selectedGenre === id ? setSelectedGenre(-1) : setSelectedGenre(id);
+    setParams((prevValue) => {
+      const updatedParams = { ...prevValue };
+      if (updatedParams.genres === id) {
+        delete updatedParams.genres;
+      } else {
+        updatedParams.genres = id;
+      }
+      return updatedParams;
+    });
+    console.log(parameters);
   };
 
   const list = (
@@ -38,8 +52,8 @@ const Sidebar = ({ genresError, genres, genresIsLoading, selectedGenre, setSelec
             display={"flex"}
             alignItems={"center"}
             key={item.id}
-            color={selectedGenre === item.id ? "green.300" : "inherit"}
-            fontSize={selectedGenre === item.id ? "larger" : "inherit"}
+            color={parameters.genres === item.id ? "green.300" : "inherit"}
+            fontSize={parameters.genres === item.id ? "larger" : "inherit"}
             onClick={() => handleGenreSelect(item.id)}
             cursor="pointer"
             sx={{ userSelect: "none" }}
