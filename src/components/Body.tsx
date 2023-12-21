@@ -1,22 +1,26 @@
-import { Grid, GridItem, SimpleGrid, Heading, Flex, Show } from "@chakra-ui/react";
-
+import { Grid, GridItem, Heading, Flex, Show } from "@chakra-ui/react";
+import { UseGames, UseGenres } from "../services/types";
 import Sidebar from "./Sidebar";
 import Filters from "./Filters";
-import GridCard from "./GridCard";
 import GameGrid from "./GameGrid";
+import useGames from "../hooks/UseGames";
+import useGenres from "../hooks/UseGenres";
 
 const Body = () => {
+  const { gamesError, games, gamesIsLoading } : UseGames  = useGames({ page_size: 40});
+  const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
+
   return (
     <>
       <Show above="993px">
         <Grid templateColumns={"repeat(10, 1fr)"} mx="20px">
           <GridItem colSpan={{ base: 10, lg: 3, xl: 2 }} colStart={{ base: 10, lg: 1 }} colEnd={10}>
-            <Sidebar />
+            <Sidebar genresError={genresError} genres={genres} genresIsLoading={genresIsLoading} />
           </GridItem>
           <GridItem colSpan={{ base: 10, lg: 7, xl: 8 }}>
             <Heading size={"3xl"}>Games</Heading>
             <Filters my="20px" />
-            <GameGrid />
+            <GameGrid gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading} />
           </GridItem>
         </Grid>
       </Show>
@@ -30,11 +34,11 @@ const Body = () => {
             alignItems={"center"}
             flexWrap={"wrap"}
           >
-            <Sidebar />
+            <Sidebar genresError={genresError} genres={genres} genresIsLoading={genresIsLoading}/>
             <Filters />
           </Flex>
 
-          <GameGrid />
+          <GameGrid gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading}/>
         </Flex>
       </Show>
     </>

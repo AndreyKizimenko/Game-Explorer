@@ -3,19 +3,12 @@ import { CanceledError } from "../services/api-client";
 import gameService from "../services/game-service";
 import { AxiosResponse } from "axios";
 import { GamesParams } from "../services/game-service";
-
-export interface Game {
-  id: number;
-  name: string;
-  released: string;
-  metacritic: number;
-  background_image: string;
-}
+import { Game } from "../services/types";
 
 const useGames = (params?: GamesParams) => {
   const [gamesError, setGamesError] = useState("");
   const [games, setGames] = useState<Game[] | undefined>();
-  const [isLoading, setLoading] = useState(false);
+  const [gamesIsLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -36,7 +29,7 @@ const useGames = (params?: GamesParams) => {
     };
   }, []);
 
-  return { gamesError, games, setGames, isLoading };
+  return { gamesError, games, setGames, gamesIsLoading };
 };
 
 export default useGames;

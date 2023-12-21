@@ -1,24 +1,13 @@
-import {
-  Card,
-  Stack,
-  CardBody,
-  Heading,
-  Image,
-  Flex,
-  Spacer,
-  Badge,
-  Text,
-  Box,
-} from "@chakra-ui/react";
+import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from "@chakra-ui/react";
 import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple } from "react-icons/fa";
-import useGames from "../hooks/UseGames";
+import { UseGames } from "../services/types";
 
-const GridCard = () => {
-  const { gamesError, games, setGames, isLoading } = useGames({ page_size: 50 });
+const GridCard = ({gamesError, games, gamesIsLoading} : UseGames) => {
+  
   return (
     <>
       {gamesError && <Text>Encountered {gamesError}</Text>}
-      {isLoading && <Text>Fetching data</Text>}
+      {gamesIsLoading && <Text>Fetching data</Text>}
       {games &&
         games.map((item) => (
           <Card key={item.id} maxW={"680px"}>

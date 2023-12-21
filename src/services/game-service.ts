@@ -4,7 +4,7 @@ export interface GamesParams{
   id?: number;
   page_size?: number;
   platforms?:number;
-  genres?:string;
+  genres?:string | number;
   metacritic?:string;
   ordering?:string;
 

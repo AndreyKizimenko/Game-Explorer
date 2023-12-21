@@ -15,21 +15,22 @@ import {
   Text,
   Show,
 } from "@chakra-ui/react";
-
+import { UseGenres } from "../services/types";
 import { useRef, useState } from "react";
-import useGenres from "../hooks/UseGenres";
 
-const Sidebar = () => {
-  const { genresError, genres, isLoading } = useGenres();
+const Sidebar = ({ genresError, genres, genresIsLoading }: UseGenres) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 
   const [selectedGenre, setGenre] = useState<number>();
+  const handleGenreSelect = (id: number) => {
+    selectedGenre === id ? setGenre(-1) : setGenre(id);
+  };
 
   const list = (
     <List fontSize={18} spacing="5px">
       {genresError && <Text>Encountered {genresError}</Text>}
-      {isLoading && <Text>Fetching data</Text>}
+      {genresIsLoading && <Text>Fetching data</Text>}
       {genres &&
         genres.map((item) => (
           <ListItem
@@ -39,7 +40,7 @@ const Sidebar = () => {
             key={item.id}
             color={selectedGenre === item.id ? "green.300" : "inherit"}
             fontSize={selectedGenre === item.id ? "larger" : "inherit"}
-            onClick={() => (selectedGenre === item.id ? setGenre(-1) : setGenre(item.id))}
+            onClick={() => handleGenreSelect(item.id)}
             cursor="pointer"
             sx={{ userSelect: "none" }}
           >

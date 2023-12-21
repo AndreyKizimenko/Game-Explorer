@@ -1,12 +1,12 @@
 import { SimpleGrid } from "@chakra-ui/react";
-
 import GridCard from "./GridCard";
+import { UseGames } from "../services/types";
 
-const GameGrid = () => {
+const GameGrid = ({gamesError, games, gamesIsLoading} : UseGames) => {
   return (
     <>
       <SimpleGrid minChildWidth="300px" spacing={"20px"}>
-        <GridCard />
+        <GridCard gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading}/>
       </SimpleGrid>
     </>
   );

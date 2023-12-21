@@ -2,19 +2,13 @@ import { useEffect, useState } from "react";
 import { CanceledError } from "../services/api-client";
 import gameService from "../services/game-service";
 import { AxiosResponse } from "axios";
+import { Genre } from "../services/types";
 
-export interface Genre {
-  id: number;
-  name: string;
-  slug: string;
-  games_count: number;
-  image_background: string;
-}
 
 const useGenres = () => {
   const [genresError, setGenresError] = useState("");
   const [genres, setGenres] = useState<Genre[] | undefined>();
-  const [isLoading, setLoading] = useState(false);
+  const [genresIsLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -34,7 +28,7 @@ const useGenres = () => {
       cancel();
     };
   }, []);
-  return { genresError, genres, setGenres, setGenresError, isLoading };
+  return { genresError, genres, setGenres, setGenresError, genresIsLoading };
 };
 
 export default useGenres;
