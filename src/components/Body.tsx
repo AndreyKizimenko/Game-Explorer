@@ -5,17 +5,12 @@ import Filters from "./Filters";
 import GameGrid from "./GameGrid";
 import useGames from "../hooks/UseGames";
 import useGenres from "../hooks/UseGenres";
+import { useState } from "react";
 
 const Body = () => {
-  const {
-    gamesError,
-    games,
-    gamesIsLoading,
-    parameters,
-    setParams,
-  }: UseGames = useGames();
+  const { gamesError, games, gamesIsLoading, parameters, setParams }: UseGames = useGames();
   const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
-
+  const [activeGenre, setActiveGenre]= useState("");
   return (
     <>
       <Show above="993px">
@@ -27,10 +22,11 @@ const Body = () => {
               genresIsLoading={genresIsLoading}
               parameters={parameters}
               setParams={setParams}
+              setActiveGenre={setActiveGenre}
             />
           </GridItem>
           <GridItem colSpan={{ base: 10, lg: 7, xl: 8 }}>
-            <Heading size={"3xl"}>Games</Heading>
+            <Heading size={"3xl"}>{activeGenre ? activeGenre : "Games"}</Heading>
             <Filters my="20px" />
             <GameGrid gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading} />
           </GridItem>
@@ -38,7 +34,7 @@ const Body = () => {
       </Show>
       <Show below="992px">
         <Flex flexDirection={"column"} mx="20px">
-          <Heading size={"3xl"}>Games</Heading>
+          <Heading size={"3xl"}>{activeGenre ? activeGenre : "Games"}</Heading>
           <Flex
             gap={"20px"}
             my="30px"
@@ -52,6 +48,7 @@ const Body = () => {
               genresIsLoading={genresIsLoading}
               parameters={parameters}
               setParams={setParams}
+              setActiveGenre={setActiveGenre}
             />
             <Filters />
           </Flex>

@@ -24,21 +24,23 @@ const Sidebar = ({
   genresIsLoading,
   parameters,
   setParams,
+  setActiveGenre,
 }: SideBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  const handleGenreSelect = (id: number) => {
+  const handleGenreSelect = (name: string, id: number) => {
     setParams((prevValue) => {
       const updatedParams = { ...prevValue };
       if (updatedParams.genres === id) {
+        setActiveGenre("");
         delete updatedParams.genres;
       } else {
+        setActiveGenre(name);
         updatedParams.genres = id;
       }
       return updatedParams;
     });
-    console.log(parameters);
   };
 
   const list = (
@@ -54,7 +56,7 @@ const Sidebar = ({
             key={item.id}
             color={parameters.genres === item.id ? "green.300" : "inherit"}
             fontSize={parameters.genres === item.id ? "larger" : "inherit"}
-            onClick={() => handleGenreSelect(item.id)}
+            onClick={() => handleGenreSelect(item.name, item.id)}
             cursor="pointer"
             sx={{ userSelect: "none" }}
           >
@@ -106,16 +108,3 @@ const Sidebar = ({
 };
 
 export default Sidebar;
-
-/* const genres = [
-    "Action-Adventure",
-    "Open World",
-    "Puzzle",
-    "Simulation",
-    "Strategy",
-    "Sports",
-    "Role-Playing Game (RPG)",
-    "Platformer",
-    "Fighting",
-    "Narrative Adventure",
-  ]; */
