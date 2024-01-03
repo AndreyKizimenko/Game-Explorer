@@ -10,7 +10,7 @@ import { useState } from "react";
 const Body = () => {
   const { gamesError, games, gamesIsLoading, parameters, setParams }: UseGames = useGames();
   const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
-  const [activeGenre, setActiveGenre]= useState("");
+  const [activeGenre, setActiveGenre] = useState("");
   return (
     <>
       <Show above="993px">
@@ -27,7 +27,7 @@ const Body = () => {
           </GridItem>
           <GridItem colSpan={{ base: 10, lg: 7, xl: 8 }}>
             <Heading size={"3xl"}>{activeGenre ? activeGenre : "Games"}</Heading>
-            <Filters my="20px" />
+            <Filters my="20px" parameters={parameters} setParams={setParams} />
             <GameGrid gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading} />
           </GridItem>
         </Grid>
@@ -50,7 +50,7 @@ const Body = () => {
               setParams={setParams}
               setActiveGenre={setActiveGenre}
             />
-            <Filters />
+            <Filters parameters={parameters} setParams={setParams} />
           </Flex>
 
           <GameGrid gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading} />

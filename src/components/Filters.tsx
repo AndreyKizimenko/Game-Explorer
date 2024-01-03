@@ -1,11 +1,36 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Menu, MenuButton, MenuItem, MenuList, Button, MenuGroup, Flex } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Button,
+  MenuGroup,
+  Flex,
+  Text,
+} from "@chakra-ui/react";
+import usePlatforms from "../hooks/UsePlatforms";
+import { FiltersProps, UsePlatforms } from "../services/types";
 
-interface Props{
-  my?: string
-}
+const Filters = ({ my, setParams, parameters }: FiltersProps) => {
+  const ordering = ["Name", "Released", "Added", "Created", "Updated", "Rating", "Metacritic"];
+  const { platforms, platformsError, platformsIsLoading }: UsePlatforms = usePlatforms();
 
-const Filters = ({ my }: Props) => {
+  const handlePlatformSelect = (id: number) => {
+    setParams((prevValue) => {
+      let newParams = { ...prevValue };
+      if (newParams.platforms === id) {        
+        delete newParams.platforms;
+      } else {        
+        newParams.platforms = id;
+      }
+      return newParams;
+    });
+  };
+  const handleOrderSelect = () => {
+    console.log("order clicked");
+  };
+
   return (
     <>
       <Flex gap="10px" my={my}>
@@ -14,11 +39,14 @@ const Filters = ({ my }: Props) => {
             Platforms
           </MenuButton>
           <MenuList>
-            <MenuItem>Windows</MenuItem>
-            <MenuItem>Xbox</MenuItem>
-            <MenuItem>Playstation</MenuItem>
-            <MenuItem>Android</MenuItem>
-            <MenuItem>iOS</MenuItem>
+            {platformsError && <Text>Encountered {platformsError}</Text>}
+            {platformsIsLoading && <Text>Fetching data</Text>}
+            {platforms &&
+              platforms.map((item) => (
+                <MenuItem key={item.id} onClick={() => handlePlatformSelect(item.id)}>
+                  {item.name}
+                </MenuItem>
+              ))}
           </MenuList>
         </Menu>
         <Menu>
@@ -27,10 +55,11 @@ const Filters = ({ my }: Props) => {
               Order by: Relevance
             </MenuButton>
             <MenuList>
-              <MenuItem>Release date</MenuItem>
-              <MenuItem>Age</MenuItem>
-              <MenuItem>Rating</MenuItem>
-              <MenuItem>Price</MenuItem>
+              {ordering.map((item) => (
+                <MenuItem key={item} onClick={() => handleOrderSelect()}>
+                  {item}
+                </MenuItem>
+              ))}
             </MenuList>
           </MenuGroup>
         </Menu>

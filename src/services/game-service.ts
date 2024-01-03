@@ -14,6 +14,12 @@ class GameService {
     const request = apiClient.get("/genres",  { signal: controller.signal });
     return { request, cancel: () => controller.abort };
   };
+
+  getAllPlatforms = () => {
+    const controller = new AbortController();
+    const request = apiClient.get("/platforms/lists/parents",  { signal: controller.signal });
+    return { request, cancel: () => controller.abort };
+  };
 }
 
 export default new GameService();

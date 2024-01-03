@@ -1,4 +1,3 @@
-
 export interface Game {
   id: number;
   name: string;
@@ -11,8 +10,7 @@ export interface Genre {
   name: string;
   slug: string;
   games_count: number;
-  image_background: string; 
-  
+  image_background: string;
 }
 
 export interface GetGamesParams {
@@ -22,7 +20,6 @@ export interface GetGamesParams {
   genres?: number;
   metacritic?: string;
   ordering?: string;
-  
 }
 
 export default interface GameGridProps {
@@ -36,8 +33,6 @@ export interface UseGames extends GameGridProps {
   parameters: GetGamesParams;
 }
 
-
-
 export interface UseGenres {
   genresError?: string;
   genres?: Genre[];
@@ -48,4 +43,20 @@ export interface SideBarProps extends UseGenres {
   setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   parameters: GetGamesParams;
   setActiveGenre: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface Platforms {
+  id: number;
+  name: string;
+}
+export interface UsePlatforms {
+  platforms?: Platforms[];
+  platformsError?: string;
+  platformsIsLoading?: boolean;
+}
+
+export interface FiltersProps {
+  my?: string;
+  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
+  parameters: GetGamesParams;
 }
