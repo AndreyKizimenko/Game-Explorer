@@ -15,13 +15,14 @@ import { FiltersProps, UsePlatforms } from "../services/types";
 const Filters = ({ my, setParams, parameters }: FiltersProps) => {
   const ordering = ["Name", "Released", "Added", "Created", "Updated", "Rating", "Metacritic"];
   const { platforms, platformsError, platformsIsLoading }: UsePlatforms = usePlatforms();
+  //// UseState to keep track of the currently active filters
 
   const handlePlatformSelect = (id: number) => {
     setParams((prevValue) => {
       let newParams = { ...prevValue };
-      if (newParams.platforms === id) {        
+      if (newParams.platforms === id) {
         delete newParams.platforms;
-      } else {        
+      } else {
         newParams.platforms = id;
       }
       return newParams;
@@ -36,16 +37,22 @@ const Filters = ({ my, setParams, parameters }: FiltersProps) => {
       <Flex gap="10px" my={my}>
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-            Platforms
+            {parameters.platforms ? parameters.platforms : "Platforms"}
           </MenuButton>
           <MenuList>
             {platformsError && <Text>Encountered {platformsError}</Text>}
             {platformsIsLoading && <Text>Fetching data</Text>}
             {platforms &&
               platforms.map((item) => (
-                <MenuItem key={item.id} onClick={() => handlePlatformSelect(item.id)}>
+                <MenuItem
+                  key={item.id}
+                  color={parameters.platforms === item.id ? "green.300" : "inherit"}
+                  fontSize={parameters.platforms === item.id ? "larger" : "inherit"}
+                  onClick={() => handlePlatformSelect(item.id)}
+                >
                   {item.name}
                 </MenuItem>
+                
               ))}
           </MenuList>
         </Menu>
