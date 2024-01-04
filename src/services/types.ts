@@ -1,10 +1,22 @@
+export interface ParentPlatforms {
+  platform: {
+    id: number;
+    name: string;
+    slug: string;
+  }
+}
+export interface PlatformIconMap {
+  [key: number]: React.ReactElement;
+}
 export interface Game {
   id: number;
   name: string;
   released: string;
   metacritic: number;
   background_image: string;
+  parent_platforms: ParentPlatforms[];
 }
+
 export interface Genre {
   id: number;
   name: string;

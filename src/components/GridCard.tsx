@@ -1,9 +1,28 @@
 import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from "@chakra-ui/react";
-import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple } from "react-icons/fa";
-import GameGridProps from "../services/types";
+import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple, FaLinux } from "react-icons/fa";
+import GameGridProps, { ParentPlatforms, PlatformIconMap } from "../services/types";
+import { BsNintendoSwitch } from "react-icons/bs";
+import React from "react";
 
-const GridCard = ({gamesError, games, gamesIsLoading} : GameGridProps) => {
-  
+const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
+  // Initializing a platform > icon map
+  const platformIcons: PlatformIconMap = {
+    1: <FaWindows size="20px" color="grey" />,
+    2: <FaPlaystation size="20px" color="grey" />,
+    3: <FaXbox size="20px" color="grey" />,
+    4: <FaApple size="20px" color="grey" />,
+    8: <FaAndroid size="20px" color="grey" />,
+    6: <FaLinux size="20px" color="grey" />,
+    7: <BsNintendoSwitch size="20px" color="grey" />,
+  };
+  // Rendering a list of icons
+  const renderPlatformIcons = (platforms: ParentPlatforms[]) => {
+    return platforms.map((platform) => {
+      const icon = platformIcons[platform.platform.id];
+      return icon ? React.cloneElement(icon, { key: platform.platform.id }) : null;
+    });
+  };
+
   return (
     <>
       {gamesError && <Text>Encountered {gamesError}</Text>}
@@ -15,11 +34,7 @@ const GridCard = ({gamesError, games, gamesIsLoading} : GameGridProps) => {
               <Image src={item.background_image} alt={item.name} borderRadius="lg" />
               <Stack mt="6" spacing="3">
                 <Flex gap="5px" alignItems={"center"}>
-                  <FaWindows size="20px" color="grey" />
-                  <FaXbox size="20px" color="grey" />
-                  <FaPlaystation size="20px" color="grey" />
-                  <FaAndroid size="20px" color="grey" />
-                  <FaApple size="20px" color="grey" />
+                  {renderPlatformIcons(item.parent_platforms)}
                   <Spacer />
                   <Badge
                     textAlign={"center"}
