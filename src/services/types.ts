@@ -16,7 +16,7 @@ export interface Genre {
 export interface GetGamesParams {
   id?: number;
   page_size?: number;
-  platforms?: number;
+  parent_platforms?: number;
   genres?: number;
   metacritic?: string;
   ordering?: string;
