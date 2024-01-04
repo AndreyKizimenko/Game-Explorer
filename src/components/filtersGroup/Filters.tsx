@@ -8,7 +8,7 @@ const Filters = ({ my, setParams, parameters }: FiltersProps) => {
     <>
       <Flex gap="10px" my={my}>
         <PlatformsFilters parameters={parameters} setParams={setParams} />
-        <OrderBy />
+        <OrderBy parameters={parameters} setParams={setParams}/>
       </Flex>
     </>
   );

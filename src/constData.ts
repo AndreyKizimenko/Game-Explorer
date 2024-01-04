@@ -1,1 +1,1 @@
-export const ORDERING = ["Name", "Released", "Added", "Created", "Updated", "Rating", "Metacritic"];
+export const ORDERING = ["Name", "Released", "Created", "Updated", "Rating", "Metacritic"];
