@@ -1,8 +1,8 @@
-import { Search2Icon } from "@chakra-ui/icons";
-import { Flex, Image, Input, InputGroup, InputLeftElement, Link } from "@chakra-ui/react";
+import { Flex, Image, Link } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
 
 import ColorModeSwitch from "./ColorModeSwitch";
+import Search from "./Search";
 
 const Header = () => {
   return (
@@ -24,12 +24,7 @@ const Header = () => {
             alt="Game Hub Logo"
           ></Image>
         </Link>
-        <InputGroup>
-          <InputLeftElement>
-            <Search2Icon />
-          </InputLeftElement>
-          <Input placeholder="Search" />
-        </InputGroup>
+        <Search />
 
         <ColorModeSwitch />
       </Flex>
