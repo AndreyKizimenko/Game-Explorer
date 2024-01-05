@@ -2,6 +2,7 @@ import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from
 import GameGridProps from "../../services/types";
 import generateSkeleton from "../../services/loadingSkeletons";
 import renderPlatformIcons from "./PlatformIcons";
+import getCroppedImageUrl from "../../services/image-url";
 
 const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
   return (
@@ -12,9 +13,13 @@ const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
       {games &&
         games.map((item) => (
           <Card key={item.id} maxW={"680px"}>
+            <Image
+              src={getCroppedImageUrl(item.background_image)}
+              alt={item.name}
+              borderRadius="lg"
+            />
             <CardBody>
-              <Image src={item.background_image} alt={item.name} borderRadius="lg" />
-              <Stack mt="6" spacing="3">
+              <Stack spacing="3">
                 <Flex gap="5px" alignItems={"center"}>
                   {renderPlatformIcons(item.parent_platforms)}
                   <Spacer />

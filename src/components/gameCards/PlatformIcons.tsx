@@ -3,8 +3,6 @@ import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple, FaLinux } from "r
 import { BsNintendoSwitch } from "react-icons/bs";
 import React from "react";
 
-
-
   // Initializing a platform > icon map
 const platformIcons: PlatformIconMap = {
   1: <FaWindows size="20px" color="grey" />,
