@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
+import generateSkeleton from "../services/loadingSkeletons";
 
 const Sidebar = ({
   genresError,
@@ -46,7 +47,7 @@ const Sidebar = ({
   const list = (
     <List fontSize={18} spacing="5px">
       {genresError && <Text>Encountered {genresError}</Text>}
-      {genresIsLoading && <Text>Fetching data</Text>}
+      {genresIsLoading && <>{generateSkeleton(40, "32px", "80%")}</>}
       {genres &&
         genres.map((item) => (
           <ListItem

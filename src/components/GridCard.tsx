@@ -1,8 +1,19 @@
-import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from "@chakra-ui/react";
+import {
+  Card,
+  Stack,
+  CardBody,
+  Heading,
+  Image,
+  Flex,
+  Spacer,
+  Badge,
+  Text,
+} from "@chakra-ui/react";
 import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple, FaLinux } from "react-icons/fa";
 import GameGridProps, { ParentPlatforms, PlatformIconMap } from "../services/types";
 import { BsNintendoSwitch } from "react-icons/bs";
 import React from "react";
+import generateSkeleton from "../services/loadingSkeletons";
 
 const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
   // Initializing a platform > icon map
@@ -23,10 +34,11 @@ const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
     });
   };
 
+
   return (
     <>
       {gamesError && <Text>Encountered {gamesError}</Text>}
-      {gamesIsLoading && <Text>Fetching data</Text>}
+      {gamesIsLoading && <>{generateSkeleton(12, "260px")}</>}
       {games &&
         games.map((item) => (
           <Card key={item.id} maxW={"680px"}>
