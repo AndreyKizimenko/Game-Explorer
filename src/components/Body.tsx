@@ -2,13 +2,11 @@ import { Grid, GridItem, Heading, Flex, Show } from "@chakra-ui/react";
 import { UseGames, UseGenres } from "../services/types";
 import Sidebar from "./Sidebar";
 import Filters from "./filtersGroup/Filters";
-import GameGrid from "./GameGrid";
-//import useGames from "../hooks/UseGames";
+import GameGrid from "./gameCards/GameGrid";
 import useGenres from "../hooks/UseGenres";
 import { useState } from "react";
 
 const Body = ({ gamesError, games, gamesIsLoading, parameters, setParams }: UseGames) => {
-  //const { gamesError, games, gamesIsLoading, parameters, setParams }: UseGames = useGames();
   const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
   const [activeGenre, setActiveGenre] = useState("");
   return (

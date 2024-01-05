@@ -1,9 +1,9 @@
 import { Flex, Image, Link } from "@chakra-ui/react";
-import logo from "../assets/logo.webp";
+import logo from "../../assets/logo.webp";
 
 import ColorModeSwitch from "./ColorModeSwitch";
 import Search from "./Search";
-import { FiltersProps } from "../services/types";
+import { FiltersProps } from "../../services/types";
 
 const Header = ({ setParams, parameters }: FiltersProps) => {
   return (
@@ -25,7 +25,7 @@ const Header = ({ setParams, parameters }: FiltersProps) => {
             alt="Game Hub Logo"
           ></Image>
         </Link>
-        <Search setParams={setParams} parameters={parameters}/>
+        <Search setParams={setParams} parameters={parameters} />
 
         <ColorModeSwitch />
       </Flex>
