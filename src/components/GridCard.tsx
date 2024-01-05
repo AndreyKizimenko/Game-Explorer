@@ -1,14 +1,4 @@
-import {
-  Card,
-  Stack,
-  CardBody,
-  Heading,
-  Image,
-  Flex,
-  Spacer,
-  Badge,
-  Text,
-} from "@chakra-ui/react";
+import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from "@chakra-ui/react";
 import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple, FaLinux } from "react-icons/fa";
 import GameGridProps, { ParentPlatforms, PlatformIconMap } from "../services/types";
 import { BsNintendoSwitch } from "react-icons/bs";
@@ -28,17 +18,19 @@ const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
   };
   // Rendering a list of icons
   const renderPlatformIcons = (platforms: ParentPlatforms[]) => {
-    return platforms.map((platform) => {
-      const icon = platformIcons[platform.platform.id];
-      return icon ? React.cloneElement(icon, { key: platform.platform.id }) : null;
-    });
+    if (platforms) {
+      return platforms.map((platform) => {
+        const icon = platformIcons[platform.platform.id];
+        return icon ? React.cloneElement(icon, { key: platform.platform.id }) : null;
+      });
+    }
   };
-
 
   return (
     <>
       {gamesError && <Text>Encountered {gamesError}</Text>}
       {gamesIsLoading && <>{generateSkeleton(12, "260px")}</>}
+      {games?.length === 0 && <Heading>No games found</Heading>}
       {games &&
         games.map((item) => (
           <Card key={item.id} maxW={"680px"}>

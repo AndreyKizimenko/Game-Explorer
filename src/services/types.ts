@@ -32,6 +32,7 @@ export interface GetGamesParams {
   genres?: number;
   metacritic?: string;
   ordering?: string;
+  search?: string;
 }
 
 export default interface GameGridProps {

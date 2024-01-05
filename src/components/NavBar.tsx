@@ -3,8 +3,9 @@ import logo from "../assets/logo.webp";
 
 import ColorModeSwitch from "./ColorModeSwitch";
 import Search from "./Search";
+import { FiltersProps } from "../services/types";
 
-const Header = () => {
+const Header = ({ setParams, parameters }: FiltersProps) => {
   return (
     <>
       <Flex
@@ -24,7 +25,7 @@ const Header = () => {
             alt="Game Hub Logo"
           ></Image>
         </Link>
-        <Search />
+        <Search setParams={setParams} parameters={parameters}/>
 
         <ColorModeSwitch />
       </Flex>

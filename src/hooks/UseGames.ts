@@ -18,6 +18,7 @@ const useGames = () => {
       .then((res: AxiosResponse<{ results: Game[] }>) => {
         setGames(res.data.results);
         setLoading(false);
+        
       })
       .catch((err: Error) => {
         if (err instanceof CanceledError) return;
@@ -25,7 +26,7 @@ const useGames = () => {
         setLoading(false);
       });
 
-    return () => {
+    return () => {      
       cancel();
     };
   }, [parameters]);
