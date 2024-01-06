@@ -4,11 +4,19 @@ import Sidebar from "./Sidebar";
 import Filters from "./filtersGroup/Filters";
 import GameGrid from "./gameCards/GameGrid";
 import useGenres from "../hooks/UseGenres";
-import { useState } from "react";
 
-const Body = ({ gamesError, games, gamesIsLoading, parameters, setParams }: UseGames) => {
+
+const Body = ({
+  gamesError,
+  games,
+  gamesIsLoading,
+  parameters,
+  setParams,
+  activeGenre,
+  setActiveGenre,
+}: UseGames) => {
   const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
-  const [activeGenre, setActiveGenre] = useState("");
+  
   return (
     <>
       <Show above="993px">

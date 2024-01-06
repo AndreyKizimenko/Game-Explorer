@@ -9,6 +9,7 @@ const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [gamesIsLoading, setLoading] = useState(false);  
   const [parameters, setParams] = useState<GetGamesParams>({page_size: 40});
+  const [activeGenre, setActiveGenre] = useState("");
 
   useEffect(() => {
     setLoading(true);    
@@ -30,7 +31,7 @@ const useGames = () => {
     };
   }, [parameters]);
 
-  return { gamesError, games, setGames, gamesIsLoading, parameters, setParams };
+  return { gamesError, games, setGames, gamesIsLoading, parameters, setParams, activeGenre, setActiveGenre };
 };
 
 export default useGames;

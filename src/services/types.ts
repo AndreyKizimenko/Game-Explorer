@@ -44,6 +44,8 @@ export default interface GameGridProps {
 export interface UseGames extends GameGridProps {
   setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   parameters: GetGamesParams;
+  activeGenre: string, 
+  setActiveGenre: React.Dispatch<React.SetStateAction<string>>
 }
 
 export interface UseGenres {
