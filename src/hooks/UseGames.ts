@@ -6,13 +6,12 @@ import { Game, GetGamesParams } from "../services/types";
 
 const useGames = () => {
   const [gamesError, setGamesError] = useState("");
-  const [games, setGames] = useState<Game[]>();
+  const [games, setGames] = useState<Game[]>([]);
   const [gamesIsLoading, setLoading] = useState(false);  
   const [parameters, setParams] = useState<GetGamesParams>({page_size: 40});
 
   useEffect(() => {
-    setLoading(true);
-    setGames([])
+    setLoading(true);    
     const { request, cancel } = gameService.getAllGames(parameters);
     request
       .then((res: AxiosResponse<{ results: Game[] }>) => {

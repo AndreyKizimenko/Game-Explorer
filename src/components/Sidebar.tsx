@@ -18,6 +18,8 @@ import {
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
 import generateSkeleton from "../services/loadingSkeletons";
+import getCroppedImageUrl from "../services/image-url";
+
 
 const Sidebar = ({
   genresError,
@@ -55,10 +57,8 @@ const Sidebar = ({
             display={"flex"}
             alignItems={"center"}
             key={item.id}
-            color={parameters.genres === item.id ? "green.300" : "inherit"}
-            fontSize={parameters.genres === item.id ? "larger" : "inherit"}
             onClick={() => handleGenreSelect(item.name, item.id)}
-            cursor="pointer"
+            
             sx={{ userSelect: "none" }}
           >
             <Image
@@ -68,10 +68,16 @@ const Sidebar = ({
               w={"40px"}
               h="40px"
               objectFit={"cover"}
-              src={item.image_background}
+              src={getCroppedImageUrl(item.image_background)}
               alt="Game Hub Logo"
             />
-            <Text>{item.name}</Text>
+            <Button
+              color={parameters.genres === item.id ? "green.300" : "inherit"}
+              fontSize={parameters.genres === item.id ? "larger" : "inherit"}
+              variant={"link"}
+            >
+              {item.name}
+            </Button>
           </ListItem>
         ))}
     </List>
