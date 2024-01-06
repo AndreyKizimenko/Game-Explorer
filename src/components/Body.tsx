@@ -7,7 +7,6 @@ import useGenres from "../hooks/UseGenres";
 import { useState } from "react";
 
 const Body = ({ gamesError, games, gamesIsLoading, parameters, setParams }: UseGames) => {
-  
   const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
   const [activeGenre, setActiveGenre] = useState("");
   return (

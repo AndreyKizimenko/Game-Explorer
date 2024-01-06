@@ -13,11 +13,10 @@ const Search = ({ setParams }: FiltersProps) => {
       setDelayedInput(searchValue);
     }, 1000);
 
-    return () => clearTimeout(delayTimer); // Clear the timeout on cleanup
+    return () => clearTimeout(delayTimer); 
   }, [searchValue]);
 
-  useEffect(() => {
-    // Your logic here, using delayedInput
+  useEffect(() => {    
 
     setParams((prevValue) => {
       const updatedParams = { ...prevValue };
@@ -31,18 +30,7 @@ const Search = ({ setParams }: FiltersProps) => {
     });
   }, [delayedInput]);
 
-  /*   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    const currentInputValue = e.target.value;    
-    setParams((prevValue) => {
-      const updatedParams = { ...prevValue };
-      if (updatedParams.search && currentInputValue.length === 0) {        
-        delete updatedParams.search;
-      } else {        
-        updatedParams.search = currentInputValue;
-      }
-      return updatedParams;
-    });
-  } */
+
   return (
     <InputGroup>
       <InputLeftElement>

@@ -1,5 +1,5 @@
 import Body from "./components/Body";
-import Header from "./components/navbar/NavBar";
+import Header from "./components/navbar/Header";
 import useGames from "./hooks/UseGames";
 import { UseGames } from "./services/types";
 

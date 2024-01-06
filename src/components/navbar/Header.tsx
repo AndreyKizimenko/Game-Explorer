@@ -6,6 +6,7 @@ import Search from "./Search";
 import { FiltersProps } from "../../services/types";
 
 const Header = ({ setParams, parameters }: FiltersProps) => {
+  
   return (
     <>
       <Flex
