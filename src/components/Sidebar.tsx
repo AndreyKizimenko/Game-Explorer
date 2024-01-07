@@ -103,9 +103,9 @@ const Sidebar = ({
             <DrawerBody>{list}</DrawerBody>
             <DrawerFooter>
               <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
+                Close
               </Button>
-              <Button>Filter</Button>
+              <Button onClick={onClose}>Filter</Button>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
