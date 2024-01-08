@@ -5,8 +5,7 @@ import {
   ListItem,
   Button,
   Drawer,
-  DrawerBody,
-  DrawerFooter,
+  DrawerBody,  
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -45,7 +44,7 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
             display={"flex"}
             alignItems={"center"}
             key={item.id}
-            onClick={() => handleGenreSelect(item.id)}
+            onClick={() => {handleGenreSelect(item.id), onClose()}}
             sx={{ userSelect: "none" }}
           >
             <Image
@@ -61,8 +60,16 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
               alt="Game Hub Logo"
             />
             <Button
-              color={parameters.genres === item.id || (item.id === -1 && !parameters.genres) ? "green.300" : "inherit"}
-              fontSize={parameters.genres === item.id || (item.id === -1 && !parameters.genres) ? "larger" : "inherit"}
+              color={
+                parameters.genres === item.id || (item.id === -1 && !parameters.genres)
+                  ? "green.300"
+                  : "inherit"
+              }
+              fontSize={
+                parameters.genres === item.id || (item.id === -1 && !parameters.genres)
+                  ? "larger"
+                  : "inherit"
+              }
               variant={"link"}
             >
               {item.name}
@@ -90,12 +97,6 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
             <DrawerCloseButton />
             <DrawerHeader>Genres</DrawerHeader>
             <DrawerBody>{list}</DrawerBody>
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button onClick={onClose}>Filter</Button>
-            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </Show>
