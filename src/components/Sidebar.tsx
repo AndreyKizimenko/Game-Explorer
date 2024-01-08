@@ -89,7 +89,7 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
         {list}
       </Show>
       <Show below="992px">
-        <Button ref={btnRef} onClick={onOpen}>
+        <Button ref={btnRef} onClick={onOpen} py={6}>
           Genres
         </Button>
         <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>

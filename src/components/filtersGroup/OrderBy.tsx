@@ -26,9 +26,9 @@ const OrderBy = ({ setParams, parameters }: FiltersProps) => {
   };
 
   return (
-    <Menu>
-      <MenuGroup>
-        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    <Menu >
+      <MenuGroup >
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} whiteSpace="normal" py={6}>
           Order by: {currentlySelected?.name || "Relevance"}
         </MenuButton>
         <MenuList>
