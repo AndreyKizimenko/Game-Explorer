@@ -28,7 +28,7 @@ const Search = ({ setParams }: FiltersProps) => {
       }
       return updatedParams;
     });
-  }, [delayedInput]);
+  }, [delayedInput, setParams]);
 
 
   return (
