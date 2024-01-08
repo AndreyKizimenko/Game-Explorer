@@ -11,7 +11,7 @@ const PlatformsFilters = ({ setParams, parameters }: FiltersProps) => {
 
   const handlePlatformSelect = (id: number, name: string) => {
     setParams((prevValue) => {
-      let newParams = { ...prevValue };
+      const newParams = { ...prevValue };
       if (newParams.parent_platforms === id) {
         setActivePlatform("");
         delete newParams.parent_platforms;
