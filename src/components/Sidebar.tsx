@@ -27,7 +27,7 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
   const handleGenreSelect = (id: number) => {
     setParams((prevValue) => {
       const updatedParams = { ...prevValue };
-      if (updatedParams.genres === id) {
+      if (updatedParams.genres === id || id === -1) {
         delete updatedParams.genres;
       } else {
         updatedParams.genres = id;
@@ -55,12 +55,14 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
               w={"40px"}
               h="40px"
               objectFit={"cover"}
-              src={getCroppedImageUrl(item.image_background)}
+              src={
+                item.id === -1 ? item.image_background : getCroppedImageUrl(item.image_background)
+              }
               alt="Game Hub Logo"
             />
             <Button
-              color={parameters.genres === item.id ? "green.300" : "inherit"}
-              fontSize={parameters.genres === item.id ? "larger" : "inherit"}
+              color={parameters.genres === item.id || (item.id === -1 && !parameters.genres) ? "green.300" : "inherit"}
+              fontSize={parameters.genres === item.id || (item.id === -1 && !parameters.genres) ? "larger" : "inherit"}
               variant={"link"}
             >
               {item.name}

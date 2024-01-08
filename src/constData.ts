@@ -49,6 +49,12 @@ export const PLATFORMS = [
 
 export const GENRES = [
   {
+    id: -1,
+    name: "All Genres",
+    slug: "allgenres",
+    image_background: "https://th.bing.com/th/id/OIG.nPux433GhcS7OBkyat9H?pid=ImgGn",
+  },
+  {
     id: 4,
     name: "Action",
     slug: "action",
