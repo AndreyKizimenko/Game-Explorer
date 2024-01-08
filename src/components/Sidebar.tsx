@@ -5,7 +5,7 @@ import {
   ListItem,
   Button,
   Drawer,
-  DrawerBody,  
+  DrawerBody,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -15,7 +15,6 @@ import {
 } from "@chakra-ui/react";
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
-
 import getCroppedImageUrl from "../services/image-url";
 import { GENRES } from "../constData";
 
@@ -44,7 +43,9 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
             display={"flex"}
             alignItems={"center"}
             key={item.id}
-            onClick={() => {handleGenreSelect(item.id), onClose()}}
+            onClick={() => {
+              handleGenreSelect(item.id), onClose();
+            }}
             sx={{ userSelect: "none" }}
           >
             <Image

@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { FiltersProps } from "../../services/types";
 
 const Search = ({ setParams }: FiltersProps) => {
-  const [searchValue, setSearchValue] = useState<string>();
-  const [delayedInput, setDelayedInput] = useState<string>();
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [delayedInput, setDelayedInput] = useState<string>("");
 
   // Update delayedInput with a delay when inputValue changes
   useEffect(() => {

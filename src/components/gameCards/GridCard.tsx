@@ -9,8 +9,9 @@ const GridCard = ({ gamesError, games, gamesIsLoading }: GameGridProps) => {
     <>
       {gamesError && <Text>Encountered {gamesError}</Text>}
       {gamesIsLoading && <>{generateSkeleton(12, "260px")}</>}
-      {games?.length === 0 && <Heading>No games found</Heading>}
+      {!gamesIsLoading && !gamesError && games?.length === 0 && <Heading>No games found</Heading>}
       {games &&
+        !gamesIsLoading &&
         games.map((item) => (
           <Card key={item.id} maxW={"680px"}>
             <Image
