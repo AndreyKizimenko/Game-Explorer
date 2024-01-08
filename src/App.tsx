@@ -10,15 +10,11 @@ function App() {
     gamesIsLoading,
     parameters,
     setParams,
-    activeGenre,
-    setActiveGenre,
   }: UseGames = useGames();
   return (
     <>
       <Header setParams={setParams} parameters={parameters} />
       <Body
-        activeGenre={activeGenre}
-        setActiveGenre={setActiveGenre}
         gamesError={gamesError}
         games={games}
         gamesIsLoading={gamesIsLoading}

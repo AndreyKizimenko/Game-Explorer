@@ -12,34 +12,24 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Text,
   Show,
 } from "@chakra-ui/react";
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
-import generateSkeleton from "../services/loadingSkeletons";
+
 import getCroppedImageUrl from "../services/image-url";
+import { GENRES } from "../constData";
 
-
-const Sidebar = ({
-  genresError,
-  genres,
-  genresIsLoading,
-  parameters,
-  setParams,
-  setActiveGenre,
-}: SideBarProps) => {
+const Sidebar = ({ parameters, setParams }: SideBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  const handleGenreSelect = (name: string, id: number) => {
+  const handleGenreSelect = (id: number) => {
     setParams((prevValue) => {
       const updatedParams = { ...prevValue };
       if (updatedParams.genres === id) {
-        setActiveGenre("");
         delete updatedParams.genres;
       } else {
-        setActiveGenre(name);
         updatedParams.genres = id;
       }
       return updatedParams;
@@ -48,17 +38,14 @@ const Sidebar = ({
 
   const list = (
     <List fontSize={18} spacing="5px">
-      {genresError && <Text>Encountered {genresError}</Text>}
-      {genresIsLoading && <>{generateSkeleton(40, "32px", "80%")}</>}
-      {genres &&
-        genres.map((item) => (
+      {GENRES &&
+        GENRES.map((item) => (
           <ListItem
             mr="10px"
             display={"flex"}
             alignItems={"center"}
             key={item.id}
-            onClick={() => handleGenreSelect(item.name, item.id)}
-            
+            onClick={() => handleGenreSelect(item.id)}
             sx={{ userSelect: "none" }}
           >
             <Image

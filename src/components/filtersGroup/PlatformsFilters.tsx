@@ -22,7 +22,7 @@ const PlatformsFilters = ({ setParams, parameters }: FiltersProps) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-        {parameters.parent_platforms ? currentlySelected?.name : "Platforms"}
+        {parameters.parent_platforms ? currentlySelected?.name : "All Platforms"}
       </MenuButton>
       <MenuList>
         {PLATFORMS &&

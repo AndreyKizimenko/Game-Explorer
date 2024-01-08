@@ -1,38 +1,30 @@
 import { Grid, GridItem, Heading, Flex, Show } from "@chakra-ui/react";
-import { UseGames, UseGenres } from "../services/types";
+import { UseGames } from "../services/types";
 import Sidebar from "./Sidebar";
 import Filters from "./filtersGroup/Filters";
 import GameGrid from "./gameCards/GameGrid";
-import useGenres from "../hooks/UseGenres";
-
+import { GENRES } from "../constData";
 
 const Body = ({
   gamesError,
   games,
   gamesIsLoading,
   parameters,
-  setParams,
-  activeGenre,
-  setActiveGenre,
+  setParams
 }: UseGames) => {
-  const { genresError, genres, genresIsLoading }: UseGenres = useGenres();
-  
+  const selectedGenre = GENRES.find(genre => parameters.genres === genre.id)
   return (
     <>
       <Show above="993px">
         <Grid templateColumns={"repeat(10, 1fr)"} mx="20px">
           <GridItem colSpan={{ base: 10, lg: 3, xl: 2 }} colStart={{ base: 10, lg: 1 }} colEnd={10}>
             <Sidebar
-              genresError={genresError}
-              genres={genres}
-              genresIsLoading={genresIsLoading}
               parameters={parameters}
-              setParams={setParams}
-              setActiveGenre={setActiveGenre}
+              setParams={setParams}              
             />
           </GridItem>
           <GridItem colSpan={{ base: 10, lg: 7, xl: 8 }}>
-            <Heading size={"3xl"}>{activeGenre ? activeGenre : "Games"}</Heading>
+            <Heading size={"3xl"}>{parameters.genres ? selectedGenre?.name : "Games"}</Heading>
             <Filters my="20px" parameters={parameters} setParams={setParams} />
             <GameGrid gamesError={gamesError} games={games} gamesIsLoading={gamesIsLoading} />
           </GridItem>
@@ -40,7 +32,7 @@ const Body = ({
       </Show>
       <Show below="992px">
         <Flex flexDirection={"column"} mx="20px">
-          <Heading size={"3xl"}>{activeGenre ? activeGenre : "Games"}</Heading>
+          <Heading size={"3xl"}>{parameters.genres ? selectedGenre?.name : "Games"}</Heading>
           <Flex
             gap={"20px"}
             my="30px"
@@ -49,12 +41,9 @@ const Body = ({
             flexWrap={"wrap"}
           >
             <Sidebar
-              genresError={genresError}
-              genres={genres}
-              genresIsLoading={genresIsLoading}
               parameters={parameters}
               setParams={setParams}
-              setActiveGenre={setActiveGenre}
+              
             />
             <Filters parameters={parameters} setParams={setParams} />
           </Flex>
