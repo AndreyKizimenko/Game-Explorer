@@ -1,6 +1,5 @@
-
-
 export const PLATFORMS = [
+  { id: -1, name: "All Platforms", slug: "allplatforms" },
   {
     id: 1,
     name: "PC",

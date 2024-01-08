@@ -1,6 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Menu, MenuButton, MenuItem, MenuList, Button, MenuGroup } from "@chakra-ui/react";
-
 import { FiltersProps } from "../../services/types";
 
 const OrderBy = ({ setParams, parameters }: FiltersProps) => {
