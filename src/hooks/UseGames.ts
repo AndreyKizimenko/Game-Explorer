@@ -11,7 +11,7 @@ const useGames = () => {
   const fetchGamesQuery = useQuery({
     queryKey: ["games", parameters],
     queryFn: () => gamesAPIClient.getData("/games",parameters),
-    staleTime: 20 * 1000,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   return { parameters, setParams, fetchGamesQuery };

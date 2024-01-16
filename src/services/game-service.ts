@@ -1,4 +1,4 @@
-import apiClient from "./api-client";
+import axios from "axios";
 import { GetGamesParams } from "./types";
 
 // Generic Data Fetching interface
@@ -7,24 +7,18 @@ export interface FetchResponse<T>{
   results: T[]
 }
 
+const apiClient = axios.create({
+  baseURL: "https://api.rawg.io/api",
+  params: {
+    key: "3c9209d2e42744428743b1b3ee485501"
+  }
+});
+
 class GameService<T> {
   getData = (endpoint: string, params? : GetGamesParams) => {
     const config = params ? { params } : {};
     return apiClient.get<FetchResponse<T>>(endpoint,  config ).then((res) => res.data);
   };
-
-/*   getAllGames = (params? : GetGamesParams) => {  
-    const config = params ? { params } : {};  
-    return apiClient.get<FetchResponse<Game>>("/games",  config ).then((res) => res.data);    
-  };
-
-  getAllGenres = () => {
-    return apiClient.get<FetchResponse<Genre>>("/genres").then((res) => res.data);
-  };
-
-  getAllPlatforms = () => {
-    return apiClient.get<FetchResponse<Platforms>>("/platforms/lists/parents").then((res) => res.data);
-  }; */
 }
 
 export default GameService;
