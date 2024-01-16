@@ -1,5 +1,5 @@
 import apiClient from "./api-client";
-import { Game, Genre, GetGamesParams, Platforms } from "./types";
+import { GetGamesParams } from "./types";
 
 // Generic Data Fetching interface
 export interface FetchResponse<T>{
@@ -7,8 +7,13 @@ export interface FetchResponse<T>{
   results: T[]
 }
 
-class GameService {
-  getAllGames = (params? : GetGamesParams) => {  
+class GameService<T> {
+  getData = (endpoint: string, params? : GetGamesParams) => {
+    const config = params ? { params } : {};
+    return apiClient.get<FetchResponse<T>>(endpoint,  config ).then((res) => res.data);
+  };
+
+/*   getAllGames = (params? : GetGamesParams) => {  
     const config = params ? { params } : {};  
     return apiClient.get<FetchResponse<Game>>("/games",  config ).then((res) => res.data);    
   };
@@ -19,7 +24,7 @@ class GameService {
 
   getAllPlatforms = () => {
     return apiClient.get<FetchResponse<Platforms>>("/platforms/lists/parents").then((res) => res.data);
-  };
+  }; */
 }
 
-export default new GameService();
+export default GameService;

@@ -17,6 +17,7 @@ import {
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
 import getCroppedImageUrl from "../services/image-url";
+
 import { GENRES } from "../constData";
 
 const Sidebar = ({ parameters, setParams }: SideBarProps) => {
