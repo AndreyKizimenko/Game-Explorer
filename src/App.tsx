@@ -1,23 +1,16 @@
 import Body from "./components/Body";
 import Header from "./components/navbar/Header";
 import useGames from "./hooks/UseGames";
-import { UseGames } from "./services/types";
 
 function App() {
-  const {
-    gamesError,
-    games,
-    gamesIsLoading,
-    parameters,
-    setParams,
-  }: UseGames = useGames();
+  const { fetchGamesQuery, parameters, setParams } = useGames();
   return (
     <>
       <Header setParams={setParams} parameters={parameters} />
       <Body
-        gamesError={gamesError}
-        games={games}
-        gamesIsLoading={gamesIsLoading}
+        gamesError={fetchGamesQuery.error?.message}
+        games={fetchGamesQuery.data?.results}
+        gamesIsLoading={fetchGamesQuery.isLoading}
         parameters={parameters}
         setParams={setParams}
       />

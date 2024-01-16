@@ -1,9 +1,3 @@
-// Generic Data Fetching interface
-
-export interface FetchResponse<T>{
-  count: number, 
-  results: T[]
-}
 
 // Platforms interfaces
 interface Platform {

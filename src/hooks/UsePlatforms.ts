@@ -7,7 +7,8 @@ const usePlatforms = () => {
   return useQuery({
     queryKey: CACHE_KEY_PLATFORMS,
     queryFn: gameService.getAllPlatforms,
-    staleTime: 24 * 60 * 60 * 1000, // 24h
+    staleTime: 24 * 60 * 60 * 1000, // 24h,
+    initialData: { count: PLATFORMS.length, results: PLATFORMS },
     placeholderData: { count: PLATFORMS.length, results: PLATFORMS },
   });
 

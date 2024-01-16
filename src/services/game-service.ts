@@ -1,12 +1,16 @@
 import apiClient from "./api-client";
-import { FetchResponse, Genre, GetGamesParams, Platforms } from "./types";
+import { Game, Genre, GetGamesParams, Platforms } from "./types";
 
+// Generic Data Fetching interface
+export interface FetchResponse<T>{
+  count: number, 
+  results: T[]
+}
 
 class GameService {
-  getAllGames = (params? : GetGamesParams) => {
-    const controller = new AbortController();
-    const request = apiClient.get("/games",  { signal: controller.signal, params });
-    return { request, cancel: () => controller.abort };
+  getAllGames = (params? : GetGamesParams) => {  
+    const config = params ? { params } : {};  
+    return apiClient.get<FetchResponse<Game>>("/games",  config ).then((res) => res.data);    
   };
 
   getAllGenres = () => {

@@ -8,6 +8,7 @@ const useGenres = () => {
     queryKey: CACHE_KEY_GENRES,
     queryFn: gameService.getAllGenres,
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    initialData: { count: GENRES.length, results: GENRES },
     placeholderData: { count: GENRES.length, results: GENRES },
   });
 
