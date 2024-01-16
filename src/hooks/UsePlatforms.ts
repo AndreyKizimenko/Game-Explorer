@@ -1,34 +1,16 @@
-import { useEffect, useState } from "react";
-import { CanceledError } from "../services/api-client";
+import { useQuery } from "@tanstack/react-query";
+import { CACHE_KEY_PLATFORMS } from "../cacheKeys";
 import gameService from "../services/game-service";
-import { Platforms } from "../services/types";
-import { AxiosResponse } from "axios";
+import { PLATFORMS } from "../constData";
 
 const usePlatforms = () => {
-  const [platforms, setPlatforms] = useState<Platforms[] | undefined>();
-  const [platformsError, setPlatformsError] = useState("");
-  const [platformsIsLoading, setLoading] = useState(false);
+  return useQuery({
+    queryKey: CACHE_KEY_PLATFORMS,
+    queryFn: gameService.getAllPlatforms,
+    staleTime: 24 * 60 * 60 * 1000, // 24h
+    placeholderData: { count: PLATFORMS.length, results: PLATFORMS },
+  });
 
-  useEffect(() => {
-    setLoading(true);
-    const { request, cancel } = gameService.getAllPlatforms();
-
-    request
-      .then((res: AxiosResponse<{ results: Platforms[] }>) => {
-        setPlatforms(res.data.results);
-        setLoading(false);
-      })
-      .catch((err: Error) => {
-        if (err instanceof CanceledError) return;
-        setPlatformsError(err.message);
-        setLoading(false);
-      });
-
-    return () => {
-      cancel();
-    };
-  }, []);
-  return { platforms, platformsError, platformsIsLoading };
 };
 
 export default usePlatforms;

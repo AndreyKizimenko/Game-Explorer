@@ -1,3 +1,10 @@
+// Generic Data Fetching interface
+
+export interface FetchResponse<T>{
+  count: number, 
+  results: T[]
+}
+
 // Platforms interfaces
 interface Platform {
   id: number;
@@ -70,6 +77,6 @@ export interface Genre {
   id: number;
   name: string;
   slug: string;
-  games_count: number;
+  games_count?: number;
   image_background: string;
 }

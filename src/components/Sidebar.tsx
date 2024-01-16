@@ -12,10 +12,12 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Show,
+  
 } from "@chakra-ui/react";
 import { SideBarProps } from "../services/types";
 import { useRef } from "react";
 import getCroppedImageUrl from "../services/image-url";
+
 import { GENRES } from "../constData";
 
 const Sidebar = ({ parameters, setParams }: SideBarProps) => {
@@ -36,7 +38,7 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
 
   const list = (
     <List fontSize={18} spacing="5px">
-      {GENRES &&
+      {GENRES &&        
         GENRES.map((item) => (
           <ListItem
             mr="10px"
@@ -86,6 +88,7 @@ const Sidebar = ({ parameters, setParams }: SideBarProps) => {
         <Heading mb="20px" as="h3" size="lg">
           Genres
         </Heading>
+
         {list}
       </Show>
       <Show below="992px">

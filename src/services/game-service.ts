@@ -1,5 +1,5 @@
 import apiClient from "./api-client";
-import { GetGamesParams } from "./types";
+import { FetchResponse, Genre, GetGamesParams, Platforms } from "./types";
 
 
 class GameService {
@@ -10,15 +10,11 @@ class GameService {
   };
 
   getAllGenres = () => {
-    const controller = new AbortController();
-    const request = apiClient.get("/genres",  { signal: controller.signal });
-    return { request, cancel: () => controller.abort };
+    return apiClient.get<FetchResponse<Genre>>("/genres").then((res) => res.data);
   };
 
   getAllPlatforms = () => {
-    const controller = new AbortController();
-    const request = apiClient.get("/platforms/lists/parents",  { signal: controller.signal });
-    return { request, cancel: () => controller.abort };
+    return apiClient.get<FetchResponse<Platforms>>("/platforms/lists/parents").then((res) => res.data);
   };
 }
 
