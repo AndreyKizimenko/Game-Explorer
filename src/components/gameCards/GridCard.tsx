@@ -1,15 +1,13 @@
-import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge, Text } from "@chakra-ui/react";
+import React from "react";
+import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge } from "@chakra-ui/react";
 import GameGridProps from "../../services/types";
-import generateSkeleton from "../../services/loadingSkeletons";
 import renderPlatformIcons from "./PlatformIcons";
 import getCroppedImageUrl from "../../services/image-url";
-import React from "react";
+
 
 const GridCard = ({ gamesError, gamesData, gamesIsLoading }: GameGridProps) => {
   return (
-    <>
-      {gamesError && <Text>Encountered {gamesError}</Text>}
-      {gamesIsLoading && <>{generateSkeleton(20, "260px")}</>}
+    <>    
       {gamesData?.map((games, index) => (
         <React.Fragment key={index}>
           {!gamesIsLoading && !gamesError && games?.results.length === 0 && (

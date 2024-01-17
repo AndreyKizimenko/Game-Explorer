@@ -10,7 +10,7 @@ const useGames = (parameters: GetGamesParams) => {
     queryFn: ({ pageParam = 1 }) =>
       gamesAPIClient.getData("/games", { page: pageParam, ...parameters }),
     initialPageParam: 1,
-    staleTime: 60 * 1000,
+    staleTime: 60 * 60 * 1000,
     getNextPageParam: (lastPage, allPages) => {                
       return lastPage.next ? allPages.length + 1 : undefined;
     },
