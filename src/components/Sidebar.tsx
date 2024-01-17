@@ -14,13 +14,13 @@ import {
   Show,
   
 } from "@chakra-ui/react";
-import { SideBarProps } from "../services/types";
+import { QueryParameters } from "../services/types";
 import { useRef } from "react";
 import getCroppedImageUrl from "../services/image-url";
 
 import { GENRES } from "../constData";
 
-const Sidebar = ({ parameters, setParams }: SideBarProps) => {
+const Sidebar = ({ parameters, setParams }: QueryParameters) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 

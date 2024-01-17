@@ -1,3 +1,16 @@
+/* import {
+  FetchNextPageOptions,
+  InfiniteData,
+  InfiniteQueryObserverResult,
+} from "@tanstack/react-query";
+import { FetchResponse } from "./game-service";
+
+fetchNextPage: (
+  options?: FetchNextPageOptions | undefined
+) => Promise<InfiniteQueryObserverResult<InfiniteData<FetchResponse<Game>, unknown>, Error>>;
+isFetchingNextPage: boolean; */
+
+import { FetchResponse } from "./game-service";
 
 // Platforms interfaces
 interface Platform {
@@ -6,12 +19,11 @@ interface Platform {
   slug: string;
 }
 export interface ParentPlatforms {
-  platform: Platform
+  platform: Platform;
 }
 export interface PlatformIconMap {
   [key: number]: React.ReactElement;
 }
-
 
 export interface Game {
   id: number;
@@ -23,7 +35,8 @@ export interface Game {
 }
 export interface GetGamesParams {
   id?: number;
-  page_size?: number;
+  page_size: number;
+  page?: number;
   parent_platforms?: number;
   genres?: number;
   metacritic?: string;
@@ -32,25 +45,17 @@ export interface GetGamesParams {
 }
 export default interface GameGridProps {
   gamesError?: string;
-  games?: Game[];
+  gamesData?: FetchResponse<Game>[];
   gamesIsLoading?: boolean;
+
 }
-export interface UseGames extends GameGridProps {
+export interface QueryParameters {
   setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   parameters: GetGamesParams;
 }
-export interface FiltersProps {
+export interface FiltersProps extends QueryParameters {
   my?: string;
-  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
-  parameters: GetGamesParams;
 }
-export interface SideBarProps {
-  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
-  parameters: GetGamesParams;  
-}
-
-
-
 
 // Old hook interfaces
 export interface UseGenres {

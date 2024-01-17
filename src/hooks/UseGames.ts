@@ -1,20 +1,26 @@
-import { useState } from "react";
 import { Game, GetGamesParams } from "../services/types";
-import { useQuery } from "@tanstack/react-query";
-
+import { useInfiniteQuery } from "@tanstack/react-query";
 import GameService from "../services/game-service";
 
-const gamesAPIClient = new GameService<Game>;
+const gamesAPIClient = new GameService<Game>();
 
-const useGames = () => {
-  const [parameters, setParams] = useState<GetGamesParams>({ page_size: 40 });
-  const fetchGamesQuery = useQuery({
+const useGames = (parameters: GetGamesParams) => {
+  /*   return useQuery({
     queryKey: ["games", parameters],
-    queryFn: () => gamesAPIClient.getData("/games",parameters),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    queryFn: () => gamesAPIClient.getData("/games", parameters),
+    staleTime: 60 * 1000, // 24 hours
+  }); */
+  return useInfiniteQuery({
+    queryKey: ["games", parameters],
+    queryFn: ({ pageParam = 1 }) =>
+      gamesAPIClient.getData("/games", { page: pageParam, ...parameters }),
+    initialPageParam: 1,
+    staleTime: 60 * 1000,
+    getNextPageParam: (lastPage, allPages) => {                
+      return lastPage.count > allPages.length * parameters.page_size ? allPages.length + 1 : undefined;
+    },
   });
-
-  return { parameters, setParams, fetchGamesQuery };
 };
 
 export default useGames;
+//

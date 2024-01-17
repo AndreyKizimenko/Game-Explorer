@@ -1,16 +1,15 @@
+import { useState } from "react";
 import Body from "./components/Body";
 import Header from "./components/navbar/Header";
-import useGames from "./hooks/UseGames";
+import { GetGamesParams } from "./services/types";
 
-function App() {
-  const { fetchGamesQuery, parameters, setParams } = useGames();
+function App() {  
+  const [parameters, setParams] = useState<GetGamesParams>({ page_size: 20 });
+  
   return (
     <>
       <Header setParams={setParams} parameters={parameters} />
       <Body
-        gamesError={fetchGamesQuery.error?.message}
-        games={fetchGamesQuery.data?.results}
-        gamesIsLoading={fetchGamesQuery.isLoading}
         parameters={parameters}
         setParams={setParams}
       />
