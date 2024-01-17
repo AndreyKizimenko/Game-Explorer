@@ -11,7 +11,7 @@ const usePlatforms = () => {
     queryKey: CACHE_KEY_PLATFORMS,
     queryFn: () => platformsAPIClient.getData("/platforms/lists/parents"),
     staleTime: 24 * 60 * 60 * 1000, // 24h,
-    // initialData: { count: PLATFORMS.length, results: PLATFORMS },
+    //initialData: { count: PLATFORMS.length, results: PLATFORMS },
     placeholderData: { count: PLATFORMS.length, results: PLATFORMS },
   });
 };

@@ -4,7 +4,7 @@ import { GetGamesParams } from "./types";
 // Generic Data Fetching interface
 export interface FetchResponse<T>{  
   count: number, 
-  next: string | null,
+  next?: string | null,
   results: T[]
 }
 
