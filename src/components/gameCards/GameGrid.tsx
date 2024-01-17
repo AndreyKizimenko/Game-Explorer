@@ -20,7 +20,7 @@ const GameGrid = ({ parameters }: QueryParameters) => {
         my={8}
         p={6}
         fontSize={"lg"}
-        colorScheme="gray"
+        colorScheme="gray"        
         onClick={() => fetchNextPage()}
       >
         {!hasNextPage ? "No pages available" : "Load more"}

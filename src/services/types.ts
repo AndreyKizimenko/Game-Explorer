@@ -1,15 +1,3 @@
-/* import {
-  FetchNextPageOptions,
-  InfiniteData,
-  InfiniteQueryObserverResult,
-} from "@tanstack/react-query";
-import { FetchResponse } from "./game-service";
-
-fetchNextPage: (
-  options?: FetchNextPageOptions | undefined
-) => Promise<InfiniteQueryObserverResult<InfiniteData<FetchResponse<Game>, unknown>, Error>>;
-isFetchingNextPage: boolean; */
-
 import { FetchResponse } from "./game-service";
 
 // Platforms interfaces
