@@ -1,6 +1,4 @@
 import { Flex, Image, Link } from "@chakra-ui/react";
-import logo from "../../assets/logo.webp";
-
 import ColorModeSwitch from "./ColorModeSwitch";
 import Search from "./Search";
 import { FiltersProps } from "../../services/types";
@@ -20,9 +18,10 @@ const Header = ({ setParams, parameters }: FiltersProps) => {
       >
         <Link href="/">
           <Image
-            minW={{ base: "48px", lg: "64px" }}
-            maxW={{ base: "48px", lg: "64px" }}
-            src={logo}
+            minW={{ base: "48px", lg: "56px" }}
+            maxW={{ base: "48px", lg: "56px" }}
+            borderRadius={"lg"}
+            src="https://th.bing.com/th/id/OIG.nPux433GhcS7OBkyat9H?pid=ImgGn"
             alt="Game Hub Logo"
           ></Image>
         </Link>
