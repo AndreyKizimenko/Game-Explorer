@@ -1,4 +1,4 @@
-import { Center, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Center, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import GridCard from "./GridCard";
 import { QueryParameters } from "../../services/types";
 import useGames from "../../hooks/UseGames";
@@ -25,7 +25,7 @@ const GameGrid = ({ parameters }: QueryParameters) => {
             loader={
               <Center height="50px">
                 <Heading mb={12} as="h3" size="m">
-                  Loading...
+                <Spinner />
                 </Heading>
               </Center>
             }
