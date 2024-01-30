@@ -21,8 +21,7 @@ export interface Game {
   background_image: string;
   parent_platforms: ParentPlatforms[];
 }
-export interface GetGamesParams {
-  id?: number;
+export interface GetGamesParams {  
   page_size: number;
   page?: number;
   parent_platforms?: number;
@@ -38,8 +37,9 @@ export default interface GameGridProps {
 
 }
 export interface QueryParameters {
-  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   parameters: GetGamesParams;
+  setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
+  
 }
 export interface FiltersProps extends QueryParameters {
   my?: string;
