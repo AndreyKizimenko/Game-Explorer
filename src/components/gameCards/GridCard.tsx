@@ -1,9 +1,15 @@
 import React from "react";
 import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge } from "@chakra-ui/react";
-import GameGridProps from "../../services/types";
 import renderPlatformIcons from "./PlatformIcons";
 import getCroppedImageUrl from "../../services/image-url";
+import { FetchResponse } from "../../services/game-service";
+import { Game } from "../../hooks/UseGames";
 
+export interface GameGridProps {
+  gamesError?: string;
+  gamesData?: FetchResponse<Game>[];
+  gamesIsLoading?: boolean;
+}
 
 const GridCard = ({ gamesError, gamesData, gamesIsLoading }: GameGridProps) => {
   return (

@@ -1,10 +1,27 @@
-import { Game, GetGamesParams } from "../services/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import GameService from "../services/game-service";
 import ms from "ms";
-const gamesAPIClient = new GameService<Game>();
+import { GameQuery } from "../filterStore";
 
-const useGames = (parameters: GetGamesParams) => {
+interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
+export interface ParentPlatforms {
+  platform: Platform;
+}
+export interface Game {
+  id: number;
+  name: string;
+  released: string;
+  metacritic: number;
+  background_image: string;
+  parent_platforms: ParentPlatforms[];
+}
+
+const gamesAPIClient = new GameService<Game>();
+const useGames = (parameters: GameQuery) => {
   
   return useInfiniteQuery({
     queryKey: ["games", parameters],

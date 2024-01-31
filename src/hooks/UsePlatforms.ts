@@ -1,9 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { CACHE_KEY_PLATFORMS } from "../cacheKeys";
 import { PLATFORMS } from "../constData";
-import { Platforms } from "../services/types";
 import GameService from "../services/game-service";
 import ms from "ms";
+export interface Platforms {
+  id: number;
+  name: string;
+}
+export interface UsePlatforms {
+  platforms?: Platforms[];
+  platformsError?: string;
+  platformsIsLoading?: boolean;
+}
+
 const platformsAPIClient = new GameService<Platforms>();
 
 const usePlatforms = () => {

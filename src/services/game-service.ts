@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetGamesParams } from "./types";
+import { GameQuery } from "../filterStore";
 
 // Generic Data Fetching interface
 export interface FetchResponse<T>{  
@@ -16,7 +16,7 @@ const apiClient = axios.create({
 });
 
 class GameService<T> {
-  getData = (endpoint: string, params? : GetGamesParams) => {
+  getData = (endpoint: string, params? : GameQuery) => {
     const config = params ? { params } : {};
     return apiClient.get<FetchResponse<T>>(endpoint,  config ).then((res) => res.data);
   };

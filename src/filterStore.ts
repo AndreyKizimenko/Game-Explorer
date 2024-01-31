@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from 'simple-zustand-devtools';
 
-interface GameQuery {
+export interface GameQuery {
+  page?: number;
   page_size: number;
   parent_platforms?: number;
   genres?: number;

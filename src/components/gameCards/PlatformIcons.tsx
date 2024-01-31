@@ -1,9 +1,13 @@
-import { PlatformIconMap, ParentPlatforms } from "../../services/types";
 import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple, FaLinux } from "react-icons/fa";
 import { BsNintendoSwitch } from "react-icons/bs";
 import React from "react";
+import { ParentPlatforms } from "../../hooks/UseGames";
 
-  // Initializing a platform > icon map
+interface PlatformIconMap {
+  [key: number]: React.ReactElement;
+}
+
+// Initializing a platform > icon map
 const platformIcons: PlatformIconMap = {
   1: <FaWindows size="20px" color="grey" />,
   2: <FaPlaystation size="20px" color="grey" />,
@@ -22,10 +26,5 @@ const renderPlatformIcons = (platforms: ParentPlatforms[]) => {
     });
   }
 };
-
-
-
-
-
 
 export default renderPlatformIcons;
