@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import GameService from "../services/game-service";
 import ms from "ms";
-import { GameQuery } from "../filterStore";
+import useFiltersStore from "../filterStore";
 
 interface Platform {
   id: number;
@@ -21,15 +21,15 @@ export interface Game {
 }
 
 const gamesAPIClient = new GameService<Game>();
-const useGames = (parameters: GameQuery) => {
-  
+const useGames = () => {
+  const parameters = useFiltersStore((s) => s.filterParameters);
   return useInfiniteQuery({
     queryKey: ["games", parameters],
     queryFn: ({ pageParam = 1 }) =>
       gamesAPIClient.getData("/games", { page: pageParam, ...parameters }),
     initialPageParam: 1,
     staleTime: ms("1h"),
-    getNextPageParam: (lastPage, allPages) => {                
+    getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
     },
   });

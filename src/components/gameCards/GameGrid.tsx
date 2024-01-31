@@ -3,11 +3,11 @@ import GridCard from "./GridCard";
 import useGames from "../../hooks/UseGames";
 import InfiniteScroll from "react-infinite-scroll-component";
 import generateSkeleton from "../../services/loadingSkeletons";
-import useFiltersStore from "../../filterStore";
+
 
 const GameGrid = () => {
-  const parameters = useFiltersStore(s => s.filterParameters)
-  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames(parameters);
+  
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
   
   return (
     <>
