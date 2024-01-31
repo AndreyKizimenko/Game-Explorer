@@ -1,9 +1,10 @@
 import { Search2Icon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { FiltersProps } from "../../services/types";
+import useFiltersStore from "../../filterStore";
 
-const Search = ({ setParams }: FiltersProps) => {
+const Search = () => {
+  const setSearch = useFiltersStore((s) => s.setSearch);
   const [searchValue, setSearchValue] = useState<string>("");
   const [delayedInput, setDelayedInput] = useState<string>("");
 
@@ -13,23 +14,12 @@ const Search = ({ setParams }: FiltersProps) => {
       setDelayedInput(searchValue);
     }, 1000);
 
-    return () => clearTimeout(delayTimer); 
+    return () => clearTimeout(delayTimer);
   }, [searchValue]);
 
-  useEffect(() => {    
-
-    setParams((prevValue) => {
-      const updatedParams = { ...prevValue };
-
-      if (updatedParams.search && delayedInput?.length === 0) {
-        delete updatedParams.search;
-      } else {
-        updatedParams.search = delayedInput;
-      }
-      return updatedParams;
-    });
-  }, [delayedInput, setParams]);
-
+  useEffect(() => {
+    setSearch(delayedInput);
+  }, [delayedInput, setSearch]);
 
   return (
     <InputGroup>

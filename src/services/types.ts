@@ -41,7 +41,7 @@ export interface QueryParameters {
   setParams: React.Dispatch<React.SetStateAction<GetGamesParams>>;
   
 }
-export interface FiltersProps extends QueryParameters {
+export interface FiltersProps {
   my?: string;
 }
 

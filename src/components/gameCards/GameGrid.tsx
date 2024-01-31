@@ -1,11 +1,12 @@
 import { Center, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import GridCard from "./GridCard";
-import { QueryParameters } from "../../services/types";
 import useGames from "../../hooks/UseGames";
 import InfiniteScroll from "react-infinite-scroll-component";
 import generateSkeleton from "../../services/loadingSkeletons";
+import useFiltersStore from "../../filterStore";
 
-const GameGrid = ({ parameters }: QueryParameters) => {
+const GameGrid = () => {
+  const parameters = useFiltersStore(s => s.filterParameters)
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames(parameters);
   
   return (

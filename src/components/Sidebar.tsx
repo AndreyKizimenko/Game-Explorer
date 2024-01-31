@@ -12,32 +12,31 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Show,
-  
 } from "@chakra-ui/react";
-import { QueryParameters } from "../services/types";
 import { useRef } from "react";
 import getCroppedImageUrl from "../services/image-url";
 import { GENRES } from "../constData";
+import useFiltersStore from "../filterStore";
 
-const Sidebar = ({ parameters, setParams }: QueryParameters) => {
+const Sidebar = () => {
+  const genres = useFiltersStore((s) => s.filterParameters.genres);
+  const setGenres = useFiltersStore((s) => s.setGenres);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
 
   const handleGenreSelect = (id: number) => {
-    setParams((prevValue) => {
-      const updatedParams = { ...prevValue };
-      if (updatedParams.genres === id || id === -1) {
-        delete updatedParams.genres;
-      } else {
-        updatedParams.genres = id;
-      }
-      return updatedParams;
-    });
+    if (genres === id || id === -1) {
+      setGenres(undefined);
+    }
+    else {
+      setGenres(id);
+    }
+    
   };
 
   const list = (
     <List fontSize={18} spacing="5px">
-      {GENRES &&        
+      {GENRES &&
         GENRES.map((item) => (
           <ListItem
             mr="10px"
@@ -62,16 +61,8 @@ const Sidebar = ({ parameters, setParams }: QueryParameters) => {
               alt="Game Hub Logo"
             />
             <Button
-              color={
-                parameters.genres === item.id || (item.id === -1 && !parameters.genres)
-                  ? "green.300"
-                  : "inherit"
-              }
-              fontSize={
-                parameters.genres === item.id || (item.id === -1 && !parameters.genres)
-                  ? "larger"
-                  : "inherit"
-              }
+              color={genres === item.id || (item.id === -1 && !genres) ? "green.300" : "inherit"}
+              fontSize={genres === item.id || (item.id === -1 && !genres) ? "larger" : "inherit"}
               variant={"link"}
             >
               {item.name}

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { mountStoreDevtool } from 'simple-zustand-devtools';
 
 interface GameQuery {
   page_size: number;
@@ -11,9 +12,9 @@ interface GameQuery {
 
 interface FilterStore {
   filterParameters: GameQuery;
-  setParent_platforms: (platform: number) => void;
-  setGenres: (genre: number) => void;
-  setOrdering: (order: string) => void;
+  setParent_platforms: (platform: number | undefined) => void;
+  setGenres: (genre: number | undefined) => void;
+  setOrdering: (order: string | undefined) => void;
   setSearch: (search: string) => void;
 }
 
@@ -21,7 +22,7 @@ const useFiltersStore = create<FilterStore>((set) => ({
   filterParameters: { page_size: 20 },
   setParent_platforms: (platform) =>
     set((store) => ({
-      filterParameters: { ...store.filterParameters, parent_platform: platform },
+      filterParameters: { ...store.filterParameters, parent_platforms: platform },
     })),
   setGenres: (genre) =>
     set((store) => ({ filterParameters: { ...store.filterParameters, genres: genre } })),
@@ -29,6 +30,10 @@ const useFiltersStore = create<FilterStore>((set) => ({
     set((store) => ({ filterParameters: { ...store.filterParameters, ordering: order } })),
   setSearch: (search) => set(() => ({ filterParameters: { page_size: 20, search: search } })),
 }));
+
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('Filter Store', useFiltersStore);
+}
 
 export default useFiltersStore;
 
