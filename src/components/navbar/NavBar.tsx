@@ -3,7 +3,7 @@ import ColorModeSwitch from "./ColorModeSwitch";
 import Search from "./Search";
 
 
-const Header = () => {
+const NavBar = () => {
   
   return (
     <>
@@ -33,4 +33,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

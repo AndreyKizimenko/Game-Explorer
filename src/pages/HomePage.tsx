@@ -1,11 +1,11 @@
 import { Grid, GridItem, Heading, Flex, Show } from "@chakra-ui/react";
-import Sidebar from "./Sidebar";
-import Filters from "./filtersGroup/Filters";
-import GameGrid from "./gameCards/GameGrid";
+import Sidebar from "../components/Sidebar";
+import Filters from "../components/filtersGroup/Filters";
+import GameGrid from "../components/gameCards/GameGrid";
 import { GENRES } from "../constData";
 import useFiltersStore from "../filterStore";
 
-const Body = () => {
+const HomePage = () => {
   const genres = useFiltersStore((s) => s.filterParameters.genres);
   const selectedGenre = GENRES.find((genre) => genres === genre.id);
   return (
@@ -43,4 +43,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default HomePage;
