@@ -38,7 +38,7 @@ const GameGrid = () => {
               </Center>
             }
           >
-            <SimpleGrid minChildWidth="300px" spacing={"20px"} mb={10}>
+            <SimpleGrid minChildWidth="300px" spacing={"20px"} m="10px" mb={10}>
               <GridCard
                 gamesError={error?.message}
                 gamesData={data?.pages}
