@@ -3,10 +3,7 @@ import { CACHE_KEY_PLATFORMS } from "../cacheKeys";
 import { PLATFORMS } from "../constData";
 import GameService from "../services/game-service";
 import ms from "ms";
-export interface Platforms {
-  id: number;
-  name: string;
-}
+import { Platforms } from "../entities/Platforms";
 export interface UsePlatforms {
   platforms?: Platforms[];
   platformsError?: string;

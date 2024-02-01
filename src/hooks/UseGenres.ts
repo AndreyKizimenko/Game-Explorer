@@ -3,19 +3,12 @@ import { CACHE_KEY_GENRES } from "../cacheKeys";
 import { GENRES } from "../constData";
 import GameService from "../services/game-service";
 import ms from "ms";
+import { Genre } from "../entities/Genre";
 
 export interface UseGenres {
   genresError?: string;
   genres?: Genre[];
   genresIsLoading?: boolean;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
-  slug: string;
-  games_count?: number;
-  image_background: string;
 }
 
 const genresAPIClient = new GameService<Genre>();

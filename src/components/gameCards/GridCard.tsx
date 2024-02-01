@@ -3,7 +3,7 @@ import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge } from "@cha
 import renderPlatformIcons from "./PlatformIcons";
 import getCroppedImageUrl from "../../services/image-url";
 import { FetchResponse } from "../../services/game-service";
-import { Game } from "../../hooks/UseGames";
+import { Game } from "../../entities/Game";
 import { Link } from "react-router-dom";
 
 export interface GameGridProps {

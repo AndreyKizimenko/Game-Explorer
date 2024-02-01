@@ -1,7 +1,8 @@
 import { FaWindows, FaXbox, FaPlaystation, FaAndroid, FaApple, FaLinux } from "react-icons/fa";
 import { BsNintendoSwitch } from "react-icons/bs";
 import React from "react";
-import { ParentPlatforms } from "../../hooks/UseGames";
+import { ParentPlatforms } from "../../entities/Game";
+
 
 interface PlatformIconMap {
   [key: number]: React.ReactElement;
