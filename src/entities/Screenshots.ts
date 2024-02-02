@@ -3,7 +3,7 @@ interface Screenshot {
   image: string;
 }
 
-export interface Screenshots {
+export default  interface Screenshots {
   count: number;
   results: Screenshot[];
 }

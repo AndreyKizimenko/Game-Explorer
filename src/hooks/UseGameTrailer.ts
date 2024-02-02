@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Trailers } from "../entities/Trailer";
+import Trailers from "../entities/Trailer";
 import GameService from "../services/game-service";
 import ms from "ms";
 

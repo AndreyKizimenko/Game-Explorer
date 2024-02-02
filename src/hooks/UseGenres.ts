@@ -3,7 +3,7 @@ import { CACHE_KEY_GENRES } from "../cacheKeys";
 import { GENRES } from "../constData";
 import GameService from "../services/game-service";
 import ms from "ms";
-import { Genre } from "../entities/Genre";
+import Genre from "../entities/Genre";
 
 export interface UseGenres {
   genresError?: string;

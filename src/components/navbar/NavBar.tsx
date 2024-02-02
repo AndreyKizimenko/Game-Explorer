@@ -1,6 +1,7 @@
-import { Flex, Image, Link } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import Search from "./Search";
+import { Link } from "react-router-dom";
 
 
 const NavBar = () => {
@@ -16,7 +17,7 @@ const NavBar = () => {
         mx="20px"
         mb="30px"
       >
-        <Link href="/">
+        <Link to="/">
           <Image
             minW={{ base: "48px", lg: "56px" }}
             maxW={{ base: "48px", lg: "56px" }}

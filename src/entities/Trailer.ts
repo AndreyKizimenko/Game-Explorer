@@ -8,7 +8,7 @@ interface Trailer {
   };
 }
 
-export interface Trailers {
+export default interface Trailers {
   count: number;
   results: Trailer[];
 }
