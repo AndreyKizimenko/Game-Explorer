@@ -23,9 +23,8 @@ const GridCard = ({ gamesError, gamesData, gamesIsLoading }: GameGridProps) => {
           {games &&
             !gamesIsLoading &&
             games.results.map((item) => (
-              <Link to={`games/${item.slug}`}>
+              <Link to={`games/${item.slug}`} key={item.id}>
                 <Card
-                  key={item.id}
                   maxW={"680px"}
                   _hover={{
                     cursor: "pointer",
