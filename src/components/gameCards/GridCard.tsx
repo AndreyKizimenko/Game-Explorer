@@ -1,10 +1,11 @@
 import React from "react";
-import { Card, Stack, CardBody, Heading, Image, Flex, Spacer, Badge } from "@chakra-ui/react";
+import { Card, Stack, CardBody, Heading, Image, Flex, Spacer } from "@chakra-ui/react";
 import renderPlatformIcons from "./PlatformIcons";
 import getCroppedImageUrl from "../../services/image-url";
 import { FetchResponse } from "../../services/game-service";
 import { Game } from "../../entities/Game";
 import { Link } from "react-router-dom";
+import MetacriticScore from "./MetacriticScore";
 
 export interface GameGridProps {
   gamesError?: string;
@@ -42,16 +43,7 @@ const GridCard = ({ gamesError, gamesData, gamesIsLoading }: GameGridProps) => {
                       <Flex gap="5px" alignItems={"center"}>
                         {renderPlatformIcons(item.parent_platforms)}
                         <Spacer />
-                        <Badge
-                          textAlign={"center"}
-                          width={"2em"}
-                          borderRadius={"md"}
-                          colorScheme="green"
-                          variant={"subtle"}
-                          fontSize="1.2em"
-                        >
-                          {item.metacritic}
-                        </Badge>
+                        <MetacriticScore metacriticScore={item.metacritic} />
                       </Flex>
                       <Heading size="md">{item.name}</Heading>
                     </Stack>

@@ -3,14 +3,14 @@ import { CACHE_KEY_PLATFORMS } from "../cacheKeys";
 import { PLATFORMS } from "../constData";
 import GameService from "../services/game-service";
 import ms from "ms";
-import { Platforms } from "../entities/Platforms";
+import { Platform } from "../entities/Platforms";
 export interface UsePlatforms {
-  platforms?: Platforms[];
+  platforms?: Platform[];
   platformsError?: string;
   platformsIsLoading?: boolean;
 }
 
-const platformsAPIClient = new GameService<Platforms>();
+const platformsAPIClient = new GameService<Platform>();
 
 const usePlatforms = () => {
   return useQuery({
