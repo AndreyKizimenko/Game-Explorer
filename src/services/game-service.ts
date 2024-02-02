@@ -23,8 +23,8 @@ class GameService<T> {
   get = (endpoint: string, id: number | string) => {
     return apiClient.get<T>(endpoint + "/" + id).then((res) => res.data);
   };
-  getTrailer = (id: number | string) => {
-    return apiClient.get<T>("/games/" + id + "/movies").then((res) => res.data);
+  getAll = (endpoint: string) => {
+    return apiClient.get<T>(endpoint).then((res) => res.data);
   };
 }
 

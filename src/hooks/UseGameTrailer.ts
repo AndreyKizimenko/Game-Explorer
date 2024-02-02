@@ -3,12 +3,12 @@ import { Trailers } from "../entities/Trailer";
 import GameService from "../services/game-service";
 import ms from "ms";
 
-const trailerAPIClient = new GameService<Trailers>();
+const gamesAPIClient = new GameService<Trailers>();
 
 const useGameTrailer = (id: number) => {
   return useQuery({
     queryKey: ["game_trailer", id],
-    queryFn: () => trailerAPIClient.getTrailer(id),
+    queryFn: () => gamesAPIClient.getAll(`/games/${id}/movies`),
     staleTime: ms("24h"),
   });
 };
