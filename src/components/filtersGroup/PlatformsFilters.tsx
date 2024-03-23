@@ -26,8 +26,16 @@ const PlatformsFilters = () => {
             PLATFORMS.map((item) => (
               <MenuItem
                 key={item.id}
-                color={platformFilter === item.id ? "green.300" : "inherit"}
-                fontSize={platformFilter === item.id ? "larger" : "inherit"}
+                color={
+                  platformFilter === item.id || (platformFilter === undefined && item.id === -1)
+                    ? "green.300"
+                    : "inherit"
+                }
+                fontSize={
+                  platformFilter === item.id || (platformFilter === undefined && item.id === -1)
+                    ? "larger"
+                    : "inherit"
+                }
                 onClick={() => handlePlatformSelect(item.id)}
               >
                 {item.name}
