@@ -5,10 +5,17 @@ import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import GameTrailer from "../components/GameTrailer";
 import GameScreenshots from "../components/GameScreenshots";
+import { useEffect } from "react";
 
 const GameDetailsPage = () => {
   const { slug } = useParams();
   const { data, error, isLoading } = useGameDetails(slug!);
+
+  useEffect(() => {
+    if (data) {
+      document.title = `${data.name} - Details`;
+    }
+  }, [data]);
 
   return (
     <>

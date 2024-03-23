@@ -4,10 +4,15 @@ import Filters from "../components/filtersGroup/Filters";
 import GameGrid from "../components/gameCards/GameGrid";
 import { GENRES } from "../constData";
 import useFiltersStore from "../filterStore";
+import { useEffect } from "react";
 
 const HomePage = () => {
   const genres = useFiltersStore((s) => s.filterParameters.genres);
   const selectedGenre = GENRES.find((genre) => genres === genre.id);
+
+  useEffect(() => {
+    document.title = "Game Explorer";
+  }, []);
   return (
     <>
       <Show above="993px">
