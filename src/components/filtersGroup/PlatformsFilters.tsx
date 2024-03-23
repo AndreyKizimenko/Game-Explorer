@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Menu, MenuButton, MenuItem, MenuList, Button } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuItem, MenuList, Button, MenuGroup } from "@chakra-ui/react";
 import { PLATFORMS } from "../../constData";
 import useFiltersStore from "../../filterStore";
 
@@ -17,22 +17,24 @@ const PlatformsFilters = () => {
   };
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<ChevronDownIcon />} whiteSpace="normal" py={6}>
-        {platformFilter ? currentlySelected?.name : "All Platforms"}
-      </MenuButton>
-      <MenuList>
-        {PLATFORMS &&
-          PLATFORMS.map((item) => (
-            <MenuItem
-              key={item.id}
-              color={platformFilter === item.id ? "green.300" : "inherit"}
-              fontSize={platformFilter === item.id ? "larger" : "inherit"}
-              onClick={() => handlePlatformSelect(item.id)}
-            >
-              {item.name}
-            </MenuItem>
-          ))}
-      </MenuList>
+      <MenuGroup>
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} whiteSpace="normal" py={6}>
+          {platformFilter ? currentlySelected?.name : "All Platforms"}
+        </MenuButton>
+        <MenuList>
+          {PLATFORMS &&
+            PLATFORMS.map((item) => (
+              <MenuItem
+                key={item.id}
+                color={platformFilter === item.id ? "green.300" : "inherit"}
+                fontSize={platformFilter === item.id ? "larger" : "inherit"}
+                onClick={() => handlePlatformSelect(item.id)}
+              >
+                {item.name}
+              </MenuItem>
+            ))}
+        </MenuList>
+      </MenuGroup>
     </Menu>
   );
 };
