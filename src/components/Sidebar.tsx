@@ -41,7 +41,7 @@ const Sidebar = () => {
           <ListItem
             mr="10px"
             display={"flex"}
-            alignItems={"center"}
+            alignItems={"center"} 
             key={item.id}
             onClick={() => {
               handleGenreSelect(item.id), onClose();
