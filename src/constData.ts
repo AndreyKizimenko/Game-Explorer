@@ -40,11 +40,6 @@ export const PLATFORMS = [
     name: "Nintendo",
     slug: "nintendo",
   },
-  {
-    id: 9,
-    name: "Atari",
-    slug: "atari",
-  },
 ];
 
 export const GENRES = [
