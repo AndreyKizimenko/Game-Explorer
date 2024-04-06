@@ -1,4 +1,5 @@
 Game-Explorer: A Reimagined [RAWG.io](https://rawg.io/)
+
 [Game-Explorer](https://game-explorer-lac-sigma.vercel.app/) is a web application inspired by the popular RAWG Video [Game Database](https://rawg.io/apidocs). It offers a redesigned user experience for exploring a vast library of game titles.
 
 ## Getting Started
