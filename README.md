@@ -3,7 +3,7 @@ Game-Explorer: A Reimagined [RAWG.io](https://rawg.io/)
 
 ## Getting Started
 
-This project utilizes the RAWG Video Game Database API to provide comprehensive game information. 
+This project utilizes the RAWG Video Game Database API to provide comprehensive game information.
 
 ```bash
 npm run dev
@@ -16,5 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) in your web browser to acces
 ## Built With
 
 **Frontend**: React, Typescript, CSS, HTML
+
 **API**: [RAWG Video Game Database API](https://rawg.io/apidocs)
+
 **Deployment**: [Vite](https://vitejs.dev/)
