@@ -54,4 +54,43 @@ test.describe("Home Page", () => {
     backgroundColor = await homePage.getBackgroundColor();
     expect(backgroundColor).toBe(darkTheme);
   });
+
+  test("correct genres are visible", async ({ page }) => {
+    const homePage = new HomePage(page);
+    const genreList = homePage.genres;
+    const genreItems = genreList.getByRole("listitem");
+
+    // Get all genre texts
+    const genreTexts = await genreItems.allTextContents();
+    const expectedGenres = [
+      "All Genres",
+      "Action",
+      "Indie",
+      "Adventure",
+      "RPG",
+      "Strategy",
+      "Shooter",
+      "Casual",
+      "Simulation",
+      "Puzzle",
+      "Arcade",
+      "Platformer",
+      "Massively Multiplayer",
+      "Racing",
+      "Sports",
+      "Fighting",
+      "Family",
+      "Board Games",
+      "Educational",
+      "Card",
+    ];
+
+    // Verify each expected genre is present
+    for (const expectedGenre of expectedGenres) {
+      expect(genreTexts).toContain(expectedGenre);
+    }
+
+    // Verify we have the correct number of genres
+    expect(genreTexts.length).toBe(expectedGenres.length);
+  });
 });
